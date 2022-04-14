@@ -66,10 +66,11 @@
   position: absolute;
   width: 442px;
   height: 699px;
+  border-radius: 10px;
   left: 68px;
   top: 50px;
-  background: #F0F0F0;
-  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+  background: #53536c;
+  box-shadow: 0px 12px 14px rgba(0, 0, 0, 0.25);
   text-align: center;
 }
 
@@ -83,12 +84,17 @@
 .Card p {
   width:100%;
   text-align: center;
+  color: white;
 }
 
 .Card input {
-  width:80%;
+  width: 80%;
+  border-radius: 10px;
+  height: 30px;
 }
 
 .Card button {
   width: 80%;
+  border-radius: 10px;
+  height: 40px;
 }
