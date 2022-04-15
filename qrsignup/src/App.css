@@ -8,6 +8,7 @@
 .App {
   text-align: center;
   font-family: 'YdestreetB';
+  height: 100vh;
 }
 
 .App-logo {
