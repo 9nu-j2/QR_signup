@@ -36,15 +36,15 @@ function Right() {
           <div></div>
           <div>
             <p>ID</p>
-            <input></input>
+            <input typ="text"></input>
           </div>
           <div>
             <p>PASSWORRD</p>
-            <input></input>
+            <input type="password"></input>
           </div>
           <div>
             <p>가게명</p>
-            <input></input>
+            <input type="text"></input>
           </div>
           <div></div>
           <div>
