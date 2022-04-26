@@ -12,7 +12,7 @@ let pin;
 
 function writeUserData(id, inputs, pinNumber) {
   const db = database;
-  const {email, password, name} = inputs
+  const {email, password, name} = inputs;
   console.log()
   set(ref(db, 'shop/' + id), {
     email: email,
@@ -25,7 +25,7 @@ function writeUserData(id, inputs, pinNumber) {
     name : name
   });
   id++;
-}
+} // 데이터베이스에 기록하는 함수
 
 function Register() {
   return (
@@ -63,7 +63,7 @@ function Right() {
       const getRandom = (min, max) => Math.floor(Math.random() * (max - min) + min);
       let result2 = getRandom(1000, 9999);
       return result2;
-    } // PIN 생성함수
+    } // PIN 랜덤 생성함수
     
     function ReadData() {
       let result3 = RandomPin();
@@ -79,10 +79,10 @@ function Right() {
       }).catch((error) => {
         console.error(error);
       });
-    }
+    } // 데이터베이스에서 PIN 번호 중복 확인
 
     ReadData();
-  },[]);
+  },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook
 
   const [inputs, setInputs] = useState({
     email: '',
@@ -98,11 +98,11 @@ function Right() {
       ...inputs, // 기존의 input 객체를 복사한 뒤
       [name]: value // name 키를 가진 값을 value 로 설정
     });
-  };
+  }; // 각 input에서 타이핑이 진행되는 걸 기록하는 함수
 
   const onClick = () => {
     writeUserData(id, inputs ,result);
-  }
+  } // 버튼 클릭시 실행되는 함수
 
   return (
       <div className="Right">
