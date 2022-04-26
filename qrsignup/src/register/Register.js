@@ -10,23 +10,22 @@ import { database } from "../firebase";
 let pin;
 let today = 0;
 let storeName= '';
-let id = 0;
 
-function writeUserData(id, inputs, pinNumber) {
+function writeUserData(inputs, pinNumber) {
   const db = database;
-  const {email, password, name} = inputs;
+  const {id, password, name} = inputs;
+  const expiryDate = "20230101";
   set(ref(db, 'shop/' + id), {
-    email: email,
     password: password,
     name : name,
-    pinNumber : pinNumber
+    pinNumber : pinNumber,
+    expiryDate : expiryDate
   });
   set(ref(db, `${pinNumber}/`), {
     name : name,
     length : {current: 0, total: 0},
     today : today
   });
-  id ++;
 } // 데이터베이스에 기록하는 함수
 
 function Register() {
@@ -87,12 +86,12 @@ function Right() {
   },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook
 
   const [inputs, setInputs] = useState({
-    email: '',
+    id: '',
     password: '',
     name: '',
   });
 
-  const { email, password, name } = inputs;
+  const { id, password, name } = inputs;
 
   const onChange = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
@@ -103,8 +102,8 @@ function Right() {
   }; // 각 input에서 타이핑이 진행되는 걸 기록하는 함수
 
   const onClick = () => {
-    writeUserData(id, inputs ,result);
     storeName = inputs.name;
+    writeUserData(inputs ,result);
   } // 버튼 클릭시 실행되는 함수
 
   return (
@@ -112,8 +111,8 @@ function Right() {
         <div className="Card">
           <div></div>
           <div>
-            <p>EMAIL</p>
-            <input type="text" name="email" onChange={onChange} value={email}></input>
+            <p>ID</p>
+            <input type="text" name="id" onChange={onChange} value={id}></input>
           </div>
           <div>
             <p>PASSWORRD</p>
