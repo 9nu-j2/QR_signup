@@ -7,13 +7,14 @@ import { useState, useEffect } from 'react';
 import { child, get, set, ref } from "firebase/database";
 import { database } from "../firebase";
 
-var id = 0;
 let pin;
+let today = 0;
+let storeName= '';
+let id = 0;
 
 function writeUserData(id, inputs, pinNumber) {
   const db = database;
   const {email, password, name} = inputs;
-  console.log()
   set(ref(db, 'shop/' + id), {
     email: email,
     password: password,
@@ -21,10 +22,11 @@ function writeUserData(id, inputs, pinNumber) {
     pinNumber : pinNumber
   });
   set(ref(db, `${pinNumber}/`), {
-    email: email,
-    name : name
+    name : name,
+    length : {current: 0, total: 0},
+    today : today
   });
-  id++;
+  id ++;
 } // 데이터베이스에 기록하는 함수
 
 function Register() {
@@ -102,6 +104,7 @@ function Right() {
 
   const onClick = () => {
     writeUserData(id, inputs ,result);
+    storeName = inputs.name;
   } // 버튼 클릭시 실행되는 함수
 
   return (
@@ -133,3 +136,4 @@ function Right() {
 
 export default Register;
 export { pin };
+export { storeName };

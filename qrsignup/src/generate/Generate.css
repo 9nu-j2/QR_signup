@@ -2,75 +2,46 @@
   width:100%;
   height:100%;
   display: flex;
-  flex-direction: column;
+  position: relative;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-color: white;
 }
 
-.BigSide {
-  width: 40%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  background-color: #ddddec;
-}
-
-.Kt {
-  height: 10%;
-  font-size: 24px;
-  font-weight: 200;
-  color: #53536c;
-}
-
-.Kt p {
-  margin-bottom: 0;
-}
-
-.Thisis {
-  height: 15%;
-  font-size: 32px;
-  font-weight: 800;
-  color: #53536c;
-}
-
-.Wtf {
-  height: 10%;
-  font-size: 32px;
-  font-weight: 600;
-  color: #53536c;
-}
-
-.Wtf p {
-  margin: 0;
+.Div1 img {
+  width: 670px;
+  height: 100%;
 }
 
 #mountNode {
-  height: 45%;
+  height: 34%;
+  position: absolute;
 }
 
-.Howto {
-  height: 20%;
-  font-size: 24px;
+.Store {
+  height: 58%;
+  position: absolute;
   font-weight: 600;
-  color: #53536c;
+  font-size: 48px;
 }
 
-.SmallSide {
-  width: 40%;
-  height: 15%;
-  background: #53536c;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
+@media all and (min-width:768px) and (max-width:1023px) {
+  /*스타일입력*/
+} 
 
-.SmallSide p {
-  font-size: 24px;
-  font-weight: 600;
-  color: white;
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+  /*스타일입력*/
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
+@media all and (min-width:480px) and (max-width:767px) {
+  /*스타일입력*/
+  
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
+@media all and (max-width:479px) {
+  /*스타일입력*/
 }
