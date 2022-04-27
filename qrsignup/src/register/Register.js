@@ -58,9 +58,13 @@ function Right() {
 
   let [result,resultC] = useState(0);
   let [버튼, 버튼변경] = useState(false);
+  const [inputs, setInputs] = useState({
+    id: '',
+    password: '',
+    name: '',
+  });
 
   useEffect(()=>{
-
     function RandomPin(){
       const getRandom = (min, max) => Math.floor(Math.random() * (max - min) + min);
       let result2 = getRandom(1000, 9999);
@@ -86,11 +90,6 @@ function Right() {
     ReadData();
   },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook
 
-  const [inputs, setInputs] = useState({
-    id: '',
-    password: '',
-    name: '',
-  });
 
   const { id, password, name } = inputs;
 
@@ -100,18 +99,20 @@ function Right() {
       ...inputs, // 기존의 input 객체를 복사한 뒤
       [name]: value // name 키를 가진 값을 value 로 설정
     });
-    버튼변경(true);
+
+    if(inputs.id.length > 1 && inputs.password.length > 1 && inputs.name.length > 1){
+      버튼변경(true);
+    }
   }; // 각 input에서 타이핑이 진행되는 걸 기록하는 함수
 
   const onClick = () => {
-      storeName = inputs.name;
-      writeUserData(inputs ,result);
-      console.log(storeName);
+    storeName = inputs.name;
+    writeUserData(inputs ,result);
   } // 버튼 클릭시 실행되는 함수
 
   function Button() {
     if(버튼===false){
-      return(<button onClick={onClick}>QR코드 생성하기</button>);
+      return(<button>QR코드 생성하기</button>);
     }
     else {
       return(<Link to='qr'><button onClick={onClick}>QR코드 생성하기</button></Link>);
