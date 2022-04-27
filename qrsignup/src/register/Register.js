@@ -58,11 +58,14 @@ function Right() {
 
   let [result,resultC] = useState(0);
   let [버튼, 버튼변경] = useState(false);
+  let [아이디확인, 아이디확인변경] = useState(false);
+
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
     name: '',
   });
+  const dbRef = ref(database);
 
   useEffect(()=>{
     function RandomPin(){
@@ -73,7 +76,7 @@ function Right() {
     
     function ReadData() {
       let result3 = RandomPin();
-      const dbRef = ref(database);
+      
       get(child(dbRef, `${result3}`)).then((snapshot)=>{
         if (snapshot.exists()) {
           console.log(snapshot.val());
@@ -100,6 +103,17 @@ function Right() {
       [name]: value // name 키를 가진 값을 value 로 설정
     });
 
+    get(child(dbRef, 'shop/' + `${value}`)).then((snapshot)=>{
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        아이디확인변경(true);
+      } else {
+        아이디확인변경(false);
+      }
+    }).catch((error) => {
+      console.error(error);
+    }); // ID 중복검사
+
     if(inputs.id.length > 1 && inputs.password.length > 1 && inputs.name.length > 1){
       버튼변경(true);
     }
@@ -107,7 +121,7 @@ function Right() {
 
   const onClick = () => {
     storeName = inputs.name;
-    writeUserData(inputs ,result);
+        writeUserData(inputs ,result);
   } // 버튼 클릭시 실행되는 함수
 
   function Button() {
@@ -116,6 +130,24 @@ function Right() {
     }
     else {
       return(<Link to='qr'><button onClick={onClick}>QR코드 생성하기</button></Link>);
+    }
+  }
+
+  function Checkid() {
+    const style = {
+      color: "red"
+    }
+
+    if(아이디확인 === true){
+      return (
+        <div>
+          <div style={style}>이미 존재하는 아이디 입니다.</div>
+        </div>
+      );
+    }else {
+      return (
+        <div></div>
+      );;
     }
   }
 
@@ -135,7 +167,7 @@ function Right() {
             <p>가게명</p>
             <input type="text" name="name" onChange={onChange} value={name}></input>
           </div>
-          <div></div>
+          <Checkid></Checkid>
           <div>
             <Button></Button>
           </div>
