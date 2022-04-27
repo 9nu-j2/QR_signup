@@ -57,6 +57,7 @@ function Left() {
 function Right() {
 
   let [result,resultC] = useState(0);
+  let [버튼, 버튼변경] = useState(false);
 
   useEffect(()=>{
 
@@ -99,12 +100,23 @@ function Right() {
       ...inputs, // 기존의 input 객체를 복사한 뒤
       [name]: value // name 키를 가진 값을 value 로 설정
     });
+    버튼변경(true);
   }; // 각 input에서 타이핑이 진행되는 걸 기록하는 함수
 
   const onClick = () => {
-    storeName = inputs.name;
-    writeUserData(inputs ,result);
+      storeName = inputs.name;
+      writeUserData(inputs ,result);
+      console.log(storeName);
   } // 버튼 클릭시 실행되는 함수
+
+  function Button() {
+    if(버튼===false){
+      return(<button onClick={onClick}>QR코드 생성하기</button>);
+    }
+    else {
+      return(<Link to='qr'><button onClick={onClick}>QR코드 생성하기</button></Link>);
+    }
+  }
 
   return (
       <div className="Right">
@@ -124,7 +136,7 @@ function Right() {
           </div>
           <div></div>
           <div>
-            <Link to="/qr"><button onClick={onClick}>QR코드 생성하기</button></Link>
+            <Button></Button>
           </div>
           <div></div>
           <div></div>

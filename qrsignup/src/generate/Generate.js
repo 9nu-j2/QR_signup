@@ -5,7 +5,7 @@ import { pin } from '../register/Register';
 import { storeName } from '../register/Register';
 
 function Generate() {
-
+  console.log(storeName);
   return (
     <div className="Div1">
       <img src={poster}></img>
