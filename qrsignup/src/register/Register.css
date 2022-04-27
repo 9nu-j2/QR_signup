@@ -176,9 +176,45 @@
   }
 
   .Box {
-    width: 442px;
+    width: 400px;
     height: 699px;
     text-align: center;
+  }
+
+  .Logo {
+    width: 400px;
+    height: 10%;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  
+  .About {
+    width: 100%;
+    height: 40%;
+  }
+  
+  .About .Bigp {
+    margin: 0;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 36px;
+  }
+  
+  .About .Smallp {
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  
+  .Image {
+    width: 400px;
+    height: 50%;
+  }
+  
+  .Image img{
+    width:100%;
+    height:100%; 
   }
 
   .Right {
