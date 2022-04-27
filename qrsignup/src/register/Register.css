@@ -102,7 +102,7 @@
   cursor: pointer;
 }
 
-@media all and (min-width:480px) and (max-width:1023px) {
+@media all and (min-width:360px) and (max-width:1023px) {
   /*스타일입력*/
   .Div {
     display: flex;
