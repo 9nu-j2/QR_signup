@@ -1,30 +1,59 @@
-.Div1 {
-  width:100%;
-  height:100%;
+.All {
   display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
   text-align: center;
+  justify-content: center;
   background-color: white;
 }
 
+.Div1 {
+  width: 719px;
+  height:1024px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .Div1 img {
-  width: 670px;
+  position: absolute;
+  width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
-#mountNode {
-  height: 34%;
-  position: absolute;
+.Upper {
+  height: 19.8%;
+  width: 100%;
 }
 
+.Titlepart {
+  height: 12.8%;
+  width: 100%;
+  z-index: 5;
+}
 .Store {
-  height: 58%;
-  position: absolute;
+  height:100%;
+  width:100%;
   font-weight: 600;
   font-size: 48px;
+  z-index: 6;
+  color: black;
 }
+
+.mountNode {
+  height: 39.4%;
+  width: 100%;
+  z-index: 3;
+}
+
+.nothing {
+  height: 28%;
+  width:100%;
+}
+
+
 
 @media all and (min-width:768px) and (max-width:1023px) {
   /*스타일입력*/
