@@ -5,7 +5,6 @@ import { pin } from '../register/Register';
 import { storeName } from '../register/Register';
 
 function Generate() {
-  console.log(storeName);
   return (
     <div className='All'>
     <div className="Div1">
