@@ -74,7 +74,7 @@ function Modal(props) {
           </div>
           <div className="P3"></div>
           <div className="P4">
-          <QRCode value={"WIFI:S:" + props.inputs.ssid + ";T:WPA;P" + props.inputs.pw + ";"} renderAs="canvas" size={325}/>
+          <QRCode value={"WIFI:S:" + props.inputs.ssid + ";T:WPA;P:" + props.inputs.pw + ";"} renderAs="canvas" size={325}/>
           </div>
           <div className="P5">
             <p>SSID : {props.inputs.ssid}</p>
