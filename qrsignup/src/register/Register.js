@@ -121,7 +121,7 @@ function Right() {
 
   const onClick = () => {
     storeName = inputs.name;
-        writeUserData(inputs ,result);
+    writeUserData(inputs ,result);
   } // 버튼 클릭시 실행되는 함수
 
   function Button() {

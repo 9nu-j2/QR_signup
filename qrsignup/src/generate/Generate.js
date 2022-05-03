@@ -7,13 +7,13 @@ import { storeName } from '../register/Register';
 function Generate() {
   return (
     <div className='All'>
-    <div className="Div1">
+      <div className="Div1">
       <img src={poster}></img>
         <div className='Upper'></div>
         <div className='Titlepart'><div className="Store">{storeName}</div></div>
         <div className='mountNode'><QRCode value={"https://qr-waiting-client.netlify.app/" + pin} renderAs="canvas" size={404}/></div>
         <div className='nothing'></div>
-    </div>
+      </div>
     </div>
   );
 }
