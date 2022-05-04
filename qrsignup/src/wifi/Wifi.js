@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link } from "react-scroll";
 import QRCode from 'qrcode.react';
 
+
 function Wifi() {
   let [모달, 모달변경] = useState(false);
 
@@ -79,6 +80,7 @@ function Modal(props) {
           <div className="P5">
             <p>SSID : {props.inputs.ssid}</p>
             <p>비밀번호 : {props.inputs.pw}</p>
+            <button>프린트하기</button>
           </div>
         </div>
       </div>
