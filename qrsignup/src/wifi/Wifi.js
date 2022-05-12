@@ -64,8 +64,21 @@ function Wifi() {
 }
 
 function Modal(props) {
+  const printPage = (e) => {
+    const html = document.querySelector('html');
+    const printSection = document.querySelector('.Di2').innerHTML;
+    const printDiv = document.createElement("DIV");
+    html.appendChild(printDiv);
+    printDiv.innerHTML = printSection;
+    document.body.style.display = 'none';
+    window.print();
+    document.body.style.display = 'block';
+    printDiv.style.display = 'none';
+  }
   if(props.모달===true){
     return (
+      <div className="Back">
+      <button className="button-16" onClick={printPage}>프린트하기</button>
       <div className='Di2'>
         <div className="Center" id="go">
           <img src={qrwifi}></img>
@@ -80,9 +93,9 @@ function Modal(props) {
           <div className="P5">
             <p>SSID : {props.inputs.ssid}</p>
             <p>비밀번호 : {props.inputs.pw}</p>
-            <button>프린트하기</button>
           </div>
         </div>
+      </div>
       </div>
     )
   }
