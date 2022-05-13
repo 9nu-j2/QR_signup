@@ -35,7 +35,7 @@ function Register() {
       <Right></Right>
     </div>
   );
-}
+} // 메인으로 보여주는 함수
 
 function Left() {
   return (
@@ -52,19 +52,19 @@ function Left() {
         </div>
       </div>
   );
-}
+} // 왼쪽에서 보여주는 UI
 
 function Right() {
 
-  let [result,resultC] = useState(0);
-  let [버튼, 버튼변경] = useState(false);
-  let [아이디확인, 아이디확인변경] = useState(false);
+  let [result,resultC] = useState(0); 
+  let [버튼, 버튼변경] = useState(false); // 버튼 상태를 관리하기 위한 state
+  let [아이디확인, 아이디확인변경] = useState(false); // 아이디 존재여부 검사 후 경고문구 표시를 위한 state
 
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
     name: '',
-  });
+  }); // 멀티 인풋 값을 관리하는 state
   const dbRef = ref(database);
 
   useEffect(()=>{
@@ -99,13 +99,12 @@ function Right() {
   const onChange = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
     setInputs({
-      ...inputs, // 기존의 input 객체를 복사한 뒤
+      ...inputs, // 기존의 input 객체를 복사한 뒤, 하드카피
       [name]: value // name 키를 가진 값을 value 로 설정
     });
 
     get(child(dbRef, 'shop/' + `${value}`)).then((snapshot)=>{
       if (snapshot.exists()) {
-        console.log(snapshot.val());
         아이디확인변경(true);
       } else {
         아이디확인변경(false);
@@ -133,7 +132,7 @@ function Right() {
     }
   }
 
-  function Checkid() {
+  function CheckId() {
     const style = {
       color: "red"
     }
@@ -167,7 +166,7 @@ function Right() {
             <p>가게명</p>
             <input type="text" name="name" onChange={onChange} value={name}></input>
           </div>
-          <Checkid></Checkid>
+          <CheckId></CheckId>
           <div>
             <Button></Button>
           </div>
@@ -176,7 +175,7 @@ function Right() {
         </div>
       </div>
   );
-}
+} // 오른쪽에 보여주는 UI, 실질적인 입력을 받는 부분
 
 export default Register;
 export { pin };
