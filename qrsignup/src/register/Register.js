@@ -24,7 +24,8 @@ function writeUserData(inputs, pinNumber) {
   set(ref(db, `${pinNumber}/`), {
     name : name,
     length : {current: 0, total: 0},
-    today : today
+    today : today,
+    waitingTime : '10'
   });
 } // 데이터베이스에 기록하는 함수
 
