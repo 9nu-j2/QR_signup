@@ -83,3 +83,57 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media all and (min-width:200px) and (max-width:900px) {
+  /*스타일입력*/
+  .Navigation {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+
+  .LeftCard {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    border-radius: 50px;
+    background: #d0d0e7;
+    box-shadow:  10px 10px 30px #b1b1c4,
+                -10px -10px 30px #efefff;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .RightCard {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    border-radius: 50px;
+    background: #d0d0e7;
+    box-shadow:  10px 10px 30px #b1b1c4,
+                -10px -10px 30px #efefff;
+    justify-content: center;
+    align-items: center;
+  }
+} 
+
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
+  /*스타일입력*/
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
+@media all and (min-width:480px) and (max-width:767px) {
+  /*스타일입력*/
+  
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
+@media all and (max-width:479px) {
+  /*스타일입력*/
+}

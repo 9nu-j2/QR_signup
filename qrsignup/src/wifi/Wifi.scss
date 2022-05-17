@@ -98,7 +98,7 @@
 }
 
 .Buttons {
-  width: 20%;
+  width: 300px;
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
@@ -278,9 +278,32 @@
   outline: none;
 }
 
-@media (min-width: 768px) {
+
+@media all and (min-width:768px) {
+  /*스타일입력*/
   .button-74 {
     min-width: 120px;
     padding: 0 25px;
   }
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
+@media all and (min-width:480px) and (max-width:767px) {
+  /*스타일입력*/
+  .Center {
+    width: 100%;
+    height:1024px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+} 
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
+@media all and (max-width:479px) {
+  /*스타일입력*/
 }
