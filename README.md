@@ -20,5 +20,10 @@
 #### v6 업데이트에 따른 사용법 변화. 해당 내용 반영
 
 - qrcode.react
+- react.scroll
+- node-sass
+- react-to-print
+- dom-to-image
+- file-saver
 
 #### 컴포넌트 형태로 제공되는 API, 간단하게 설정 입력을 통해 입력된 url을 QR로 바꿔줌
