@@ -21,7 +21,7 @@ function Generate() {
       .toBlob(card)
       .then((blob) => {
         saveAs(blob, 'card.png');
-      });
+      }); //!!!!!!!!!!!!!!!!!!!!파일이름 가게명으로 변경할 것
   };
 
   return (

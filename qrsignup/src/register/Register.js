@@ -147,7 +147,7 @@ function Right() {
     }else {
       return (
         <div></div>
-      );;
+      );
     }
   }
 
