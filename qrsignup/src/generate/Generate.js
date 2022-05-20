@@ -5,7 +5,7 @@ import { pin } from '../register/Register';
 import { storeName } from '../register/Register';
 
 import { useRef } from 'react';
-import { ReactToPrint, useReactToPrint } from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 
@@ -20,8 +20,8 @@ function Generate() {
     domtoimage
       .toBlob(card)
       .then((blob) => {
-        saveAs(blob, 'card.png');
-      }); //!!!!!!!!!!!!!!!!!!!!파일이름 가게명으로 변경할 것
+        saveAs(blob, `${storeName}.png`);
+      });
   };
 
   return (
