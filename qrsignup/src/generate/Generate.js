@@ -34,7 +34,7 @@ function Generate() {
       <img src={poster}></img>
         <div className='Upper'></div>
         <div className='Titlepart'><div className="Store">{storeName}</div></div>
-        <div className='mountNode'><QRCode value={"https://qr-waiting-client.netlify.app/" + pin} renderAs="canvas" size={404}/></div>
+        <div className='mountNode'><QRCode value={"https://qr-waiting-client.netlify.app/" + pin} renderAs="canvas" size={368}/></div>
         <div className='nothing'></div>
       </div>
     </div>

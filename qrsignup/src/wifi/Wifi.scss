@@ -175,6 +175,7 @@
   height:1024px;
   overflow: hidden;
   position: relative;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -191,7 +192,7 @@
 }
 
 .P1 {
-  height: 19.53%;
+  height: 22.16%;
   width: 100%;
 }
 
@@ -202,20 +203,21 @@
 }
 
 .P3 {
-  height: 22.65%;
+  height: 23.05%;
   width: 100%;
 }
 
 .P4 {
-  height: 31.75%;
+  height: 32.22%;
   width: 100%;
   z-index: 3;
 }
 
 .P5 {
-  height: 18.35%;
+  height: 14.84%;
   width: 100%;
   z-index: 3;
+  font-size: 24px;
 }
 
 /* CSS */
