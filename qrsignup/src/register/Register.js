@@ -1,6 +1,6 @@
 import './Register.css';
 import shop from '../img/shop.png'
-
+import logo from '../img/kt.png'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -32,6 +32,9 @@ function writeUserData(inputs, pinNumber) {
 function Register() {
   return (
     <div className="Div">
+      <div className="Logo">
+        <img src={logo}></img>
+      </div>
       <Left></Left>
       <Right></Right>
     </div>
@@ -42,7 +45,7 @@ function Left() {
   return (
       <div className="Left">
         <div className="Box">
-          <div className="Logo">QR Waiting</div>
+          <div className="LogoTitle">QR Waiting</div>
           <div className="About">
             <p className="Bigp">가게를 등록하고</p>
             <p className="Bigp">QR코드를 생성하세요</p>

@@ -1,4 +1,5 @@
 import './Wifi.scss';
+import logo1 from '../img/kt_1.png';
 import qrwifi from '../img/QR_WiFI.png';
 import { useState, useRef } from 'react';
 import { Link } from "react-scroll";
@@ -34,6 +35,9 @@ function Wifi() {
 
   return (
     <div className="App">
+      <div className="Logo1">
+        <img src={logo1}></img>
+      </div>
       <div className="Di">
         <div className="CardComp">
           <div className="Pp1">

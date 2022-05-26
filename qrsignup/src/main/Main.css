@@ -6,7 +6,21 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: #d0d0e7;
+}
+
+.Logo {
+  position: absolute;
+  top:15px;
+  right: 15px;
+  height: 35.12;
+  width: 117.56px;
+  
+}
+
+.Logo img {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
 }
 
 .Brand {
@@ -16,6 +30,11 @@
   height: 20%;
   justify-content: center;
   align-items: center;
+}
+
+.Brand h1 {
+  font-size: 36px;
+  font-weight: 600;
 }
 
 .Navigation {
@@ -41,11 +60,14 @@
   flex-direction: column;
   width: 300px;
   border-radius: 50px;
-  background: #d0d0e7;
-  box-shadow:  10px 10px 30px #b1b1c4,
-              -10px -10px 30px #efefff;
+  background: #53536c;
+  box-shadow:  10px 10px 30px #47475c;
   justify-content: center;
   align-items: center;
+}
+
+.LeftCard h3 {
+  color: white;
 }
 
 .RightCard {
@@ -53,11 +75,14 @@
   flex-direction: column;
   width: 300px;
   border-radius: 50px;
-  background: #d0d0e7;
-  box-shadow:  10px 10px 30px #b1b1c4,
-              -10px -10px 30px #efefff;
+  background: #53536c;
+  box-shadow:  10px 10px 30px #47475c;
   justify-content: center;
   align-items: center;
+}
+
+.RightCard h3 {
+  color: white;
 }
 
 .TitlePart {
@@ -65,6 +90,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
+  color: white;
 }
 
 .ImagePart {
@@ -72,9 +99,9 @@
   width: 60%;
   margin: 5px;
   border-radius: 15px;
-  background: #d0d0e7;
-  box-shadow: 5px 5px 15px #b1b1c4,
-              -5px -5px 15px #efefff;
+  background: #53536c;
+  box-shadow: 5px 5px 15px #47475c,
+              -5px -5px 15px #5f5f7c;
   overflow: hidden;
 }
 
@@ -101,9 +128,8 @@
     width: 300px;
     height: 300px;
     border-radius: 50px;
-    background: #d0d0e7;
-    box-shadow:  10px 10px 30px #b1b1c4,
-                -10px -10px 30px #efefff;
+    background: #53536c;
+    box-shadow:  10px 10px 30px #47475c;
     justify-content: center;
     align-items: center;
   }
@@ -114,9 +140,8 @@
     width: 300px;
     height: 300px;
     border-radius: 50px;
-    background: #d0d0e7;
-    box-shadow:  10px 10px 30px #b1b1c4,
-                -10px -10px 30px #efefff;
+    background: #53536c;
+    box-shadow:  10px 10px 30px #47475c;
     justify-content: center;
     align-items: center;
   }
