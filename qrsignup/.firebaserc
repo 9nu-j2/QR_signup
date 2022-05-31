@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "qrwaiting-demo"
+    "default": "qr-waiting-324a3"
+  },
+  "targets": {
+    "qr-waiting-324a3": {
+      "hosting": {
+        "qrweb": [
+          "qr-waiting-signup"
+        ]
+      }
+    }
   }
 }

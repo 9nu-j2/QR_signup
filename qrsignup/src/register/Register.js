@@ -1,7 +1,7 @@
 import './Register.css';
 import shop from '../img/shop.png'
 import logo from '../img/kt.png'
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import { child, get, set, ref } from "firebase/database";
@@ -177,17 +177,18 @@ function Right() {
   const onClick = () => {
     storeName = inputs.name;
     writeUserData(inputs ,result);
+    navigate("/waiting/qr");
   } // 버튼 클릭시 실행되는 함수
 
   function Button() {
     if(버튼===1){
-      return(<button onClick={onClickFalse}>QR코드 생성하기 1</button>);
+      return(<button onClick={onClickFalse}>QR코드 생성하기</button>);
     }
     else if(버튼===2){
-      return(<button onClick={onClickExist}>QR코드 생성하기 2</button>);
+      return(<button onClick={onClickExist}>QR코드 생성하기</button>);
     }
     else if(버튼===3){
-      return(<Link to='qr'><button onClick={onClick}>QR코드 생성하기 3</button></Link>);
+      return(<button onClick={onClick}>QR코드 생성하기</button>);
     }
   }
 
