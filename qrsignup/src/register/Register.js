@@ -1,7 +1,7 @@
 import './Register.css';
 import shop from '../img/shop.png'
 import logo from '../img/kt.png'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import { child, get, set, ref } from "firebase/database";
@@ -51,6 +51,7 @@ function Left() {
             <p className="Bigp">QR코드를 생성하세요</p>
             <p className="Smallp">이 서비스는 QR웨이팅을 사용하시는 점주님들께 제공하는 서비스입니다</p>
             <p className="Smallp">DIGICO KT</p>
+            <Link to="admin"><p>관리자 페이지</p></Link>
           </div>
           <div className="Image"><img src={shop}/></div>
         </div>
