@@ -45,7 +45,7 @@ function Wifi() {
           </div>
           <div className="Pp2">
             <div className="form-group">
-              <span>가게이름</span>
+              <span>가게명</span>
               <input className="form-field" onChange={onChange} type="text" placeholder="가게이름을 입력해주세요" name="storename" value={storename}/>
             </div>
           </div>
