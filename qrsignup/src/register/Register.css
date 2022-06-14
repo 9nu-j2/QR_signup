@@ -108,6 +108,16 @@
   cursor: pointer;
 }
 
+.SelectBox {
+  width: 80%;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.SelectBox option {
+  text-align: center;
+}
+
 @media all and (min-width:480px) and (max-width:1023px) {
   /*스타일입력*/
   .Div {

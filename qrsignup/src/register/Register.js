@@ -193,13 +193,13 @@ function Right() {
 
   function Button() {
     if(버튼===1){
-      return(<button onClick={onClickFalse}>로그인</button>);
+      return(<button onClick={onClickFalse}>QR생성하기</button>);
     }
     else if(버튼===2){
-      return(<button onClick={onClickExist}>로그인</button>);
+      return(<button onClick={onClickExist}>QR생성하기</button>);
     }
     else if(버튼===3){
-      return(<button onClick={onClick}>로그인</button>);
+      return(<button onClick={onClick}>QR생성하기</button>);
     }
   } // 유효성 검사 결과에 따른 버튼 기능 변경
 
@@ -212,12 +212,16 @@ function Right() {
     if(아이디확인 === true){
       return (
         <div className="Compo">
-          <div style={style}>이미 사용중인 ID이거나 패스워드가 다릅니다.</div>
+          <p style={style}>이미 사용중인 아이디이거나 비밀번호가 다릅니다.</p>
+          <Button></Button>
         </div>
       );
     }else {
       return (
-        <div className="Compo"></div>
+        <div className="Compo">
+          <p></p>
+          <Button></Button>
+        </div>
       );
     }
   } // 아이디 유효성 검사 결과 출력 컴포넌트
@@ -241,8 +245,8 @@ function Right() {
   ]; // 셀렉트 박스 표시 데이터
   
   const CATEGORY_LIST = [
-    { value: "robot", name:'서빙로봇' },
-    { value: "pay", name:'스마트로' }
+    { value: "서빙로봇", name: "서빙로봇" },
+    { value: "스마트로", name:"스마트로" }
   ];
 
 
@@ -272,10 +276,9 @@ function Right() {
             <p>가입상품</p>
           <SelectBox options={CATEGORY_LIST} handleChange={handleChange} label="service"></SelectBox>
           </div>
-          <div className="Compo">
-            <Button></Button>
-          </div>
           <CheckId></CheckId>
+          <div className="Compo">
+          </div>
         </div>
       </div>
   );
@@ -284,7 +287,7 @@ function Right() {
 const SelectBox = (props) => {
 
   return (
-    <select onChange={props.handleChange} name={props.label}>
+    <select onChange={props.handleChange} name={props.label} className="SelectBox">
       {props.options.map((option) => (
         <option
           value={option.value}
