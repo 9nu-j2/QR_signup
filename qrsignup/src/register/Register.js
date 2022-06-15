@@ -31,7 +31,23 @@ function writeUserData(inputs, pinNumber) {
   });
 } // 데이터베이스에 기록하는 함수
 
-function Register() {
+function Register(props) {
+  const navigate = useNavigate();
+  const isLogin = props.isLogin
+
+  useEffect(()=>{
+    if(isLogin === false) {
+      navigate("/waiting/admin");
+    }
+  })
+  
+  const onClickLogout = ()=>{
+    // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
+    sessionStorage.removeItem('user_id')
+    // App 으로 이동(새로고침)
+    navigate("/waiting/admin");
+  }
+  
   return (
     <div className="Div">
       <div className="Logo">
@@ -104,6 +120,7 @@ function Right() {
 
     ReadData();
   },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook
+
 
   const { id, password, name, area, service } = inputs;
 

@@ -43,8 +43,14 @@ function Admin() {
 
   const onClick = () => {
     get(child(dbRef, 'admin/' + `${inputs.id}`)).then((snapshot)=>{
-      if (snapshot.exists()) { 
-        navigate("/waiting/admin/manage");
+      if (snapshot.exists()) {
+        if (snapshot.val().password === inputs.password){
+          sessionStorage.setItem('user_id', inputs.id);
+          navigate("/waiting/select");
+        }
+        else {
+          console.log("비밀번호가 다릅니다");
+        }
       } else {
         console.log("안됨");
       }

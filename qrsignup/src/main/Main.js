@@ -18,7 +18,7 @@ function Main() {
         <div className="RightCard">
           <div className="ImagePart"><img src={lol}/></div>
           <div className="TitlePart">QR Waiting</div>
-          <Link to="waiting"><h3>바로가기</h3></Link>
+          <Link to="waiting/admin"><h3>바로가기</h3></Link>
         </div>
         <div className="LeftCard">
           <div className="ImagePart"><img src={mark}/></div>
