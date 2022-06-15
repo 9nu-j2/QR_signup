@@ -5,6 +5,7 @@ import Wifi from './wifi/Wifi.js';
 import Master from './main/Main.js';
 import Admin from './adminpage/Admin.js';
 import Select from './select/Select.js';
+import Monitor from './monitor/Monitor.js';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/waiting' element={<Register isLogin={sessionCheck}/>} />
           <Route path='/waiting/qr' element={<Generate isLogin={sessionCheck}/>} />
           <Route path='/waiting/select' element={<Select isLogin={sessionCheck}/>} />
+          <Route path='/waiting/monitor' element={<Monitor isLogin={sessionCheck}/>} />
         </Routes>
       </BrowserRouter>
     </div>
