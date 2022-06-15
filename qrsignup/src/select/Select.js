@@ -27,8 +27,10 @@ function Select(props) {
       <div className="Logo">
         <img src={logo}></img>
       </div>
-      <div>신규 고객 등록하기</div>
-      <div>승인 요청 확인하기</div>
+      <div className="AdminSelect">
+        <div className="AdminMenu">신규 고객 등록하기</div>
+        <div className="AdminMenu">승인 요청 확인하기</div>
+      </div>
       <div>
         <button onClick={onClickLogout}>로그아웃</button>
       </div>
