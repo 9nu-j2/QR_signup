@@ -23,16 +23,18 @@ function Select(props) {
   } // 로그아웃 기능
 
   return (
-    <div>
+    <div className="Master">
       <div className="Logo">
         <img src={logo}></img>
       </div>
-      <div className="AdminSelect">
-        <div className="AdminMenu" onClick={()=>navigate("/waiting")}>신규 고객 등록하기</div>
-        <div className="AdminMenu" onClick={()=>navigate("/waiting/monitor")}>승인 요청 확인하기</div>
-      </div>
-      <div>
+      <div className="Half">
         <button onClick={onClickLogout}>로그아웃</button>
+      </div>
+      <div className="Half">
+        <div className="AdminSelect">
+          <button><div className="AdminMenu" onClick={()=>navigate("/waiting")}>신규 고객 등록하기</div></button>
+          <button><div className="AdminMenu" onClick={()=>navigate("/waiting/monitor")}>승인 요청 확인하기</div></button>
+        </div>
       </div>
     </div>
   );
