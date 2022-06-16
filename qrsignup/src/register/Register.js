@@ -1,7 +1,7 @@
 import './Register.css';
 import shop from '../img/shop.png'
 import logo from '../img/kt.png'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import { child, get, set, ref } from "firebase/database";
@@ -13,15 +13,13 @@ let storeName= '';
 
 function writeUserData(inputs, pinNumber) {
   const db = database;
-  const {id, password, name, area, service} = inputs;
+  const {id, password, name} = inputs;
   const expiryDate = "20220930";
   set(ref(db, 'shop/' + id), {
     password: password,
     name : name,
     pinNumber : pinNumber,
-    expiryDate : expiryDate,
-    area: area,
-    service: service
+    expiryDate : expiryDate
   });
   set(ref(db, `${pinNumber}/`), {
     name : name,
@@ -67,9 +65,8 @@ function Left() {
           <div className="About">
             <p className="Bigp">가게를 등록하고</p>
             <p className="Bigp">QR코드를 생성하세요</p>
-            <p className="Smallp">이 서비스는 QR웨이팅을 사용하시는 점주님들께 제공하는 서비스입니다</p>
+            <p className="Smallp">QR웨이팅을 사용하시는 점주님들을 위해 QR포스터를 생성하고 출력하세요</p>
             <p className="Smallp">DIGICO KT</p>
-            <Link to="admin"><p>관리자 페이지</p></Link>
           </div>
           <div className="Image"><img src={shop}/></div>
         </div>
@@ -82,16 +79,13 @@ function Right() {
   let [result,resultC] = useState(0); 
   let [버튼, 버튼변경] = useState(1); // 버튼 상태를 관리하기 위한 state
   let [아이디확인, 아이디확인변경] = useState(false); // 아이디 존재여부 검사 후 경고문구 표시를 위한 state
-  let [forSync,forSyncC] = useState(false);
   
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
-    name: '',
-    area: '',
-    service: ''
+    name: ''
   }); // 멀티 인풋 값을 관리하는 state
   const dbRef = ref(database);
 
@@ -121,8 +115,7 @@ function Right() {
     ReadData();
   },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook
 
-
-  const { id, password, name, area, service } = inputs;
+  const { id, password, name } = inputs;
 
   const onChangeId = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
@@ -174,14 +167,6 @@ function Right() {
       [name]: value // name 키를 가진 값을 value 로 설정
     });
   }; // 가게명 input에서 타이핑이 진행되는 걸 기록하는 함수
-
-  const handleChange = (e) => {
-    const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
-    setInputs({
-      ...inputs, // 기존의 input 객체를 복사한 뒤, 하드카피
-      [name]: value // name 키를 가진 값을 value 로 설정
-    });
-	};
 
 
   const onClickFalse = () => {
@@ -243,35 +228,11 @@ function Right() {
     }
   } // 아이디 유효성 검사 결과 출력 컴포넌트
 
-  const OPTIONS = [
-    { value: "서울", name: "서울"},
-    { value: "경기", name: "경기"},
-    { value: "인천", name: "인천"},
-    { value: "강원", name: "강원"},
-    { value: "충남", name: "충남"},
-    { value: "충북", name: "충북"},
-    { value: "대구", name: "대구"},
-    { value: "경남", name: "경남"},
-    { value: "경북", name: "경북"},
-    { value: "울산", name: "울산"},
-    { value: "부산", name: "부산"},
-    { value: "광주", name: "광주"},
-    { value: "전남", name: "전남"},
-    { value: "전북", name: "전북"},
-    { value: "제주", name: "제주"},
-  ]; // 셀렉트 박스 표시 데이터
-  
-  const CATEGORY_LIST = [
-    { value: "서빙로봇", name: "서빙로봇" },
-    { value: "스마트로", name:"스마트로" }
-  ];
-
-
   return (
       <div className="Right">
         <div className="Card">
           <div className="Compo">
-            <div className="Notice">*서비스 사용 기한은 3개월이며 기한 이후에 연장 신청이 가능합니다</div>
+            <div className="Notice">*서비스 사용 기한은 2개월이며 기한 이후에 연장 신청이 가능합니다</div>
           </div>
           <div className="Compo">
             <p>아이디</p>
@@ -286,12 +247,8 @@ function Right() {
             <input type="text" name="name" onChange={onChangeName} value={name}></input>
           </div>
           <div className="Compo">
-            <p>지역선택</p>
-            <SelectBox options={OPTIONS} handleChange={handleChange} label="area"></SelectBox>
           </div>
           <div className="Compo">
-            <p>가입상품</p>
-          <SelectBox options={CATEGORY_LIST} handleChange={handleChange} label="service"></SelectBox>
           </div>
           <CheckId></CheckId>
           <div className="Compo">
@@ -300,21 +257,6 @@ function Right() {
       </div>
   );
 } // 오른쪽에 보여주는 UI, 실질적인 입력을 받는 부분
-
-const SelectBox = (props) => {
-
-  return (
-    <select onChange={props.handleChange} name={props.label} className="SelectBox">
-      {props.options.map((option) => (
-        <option
-          value={option.value}
-        >
-          {option.name}
-        </option>
-      ))}
-    </select>
-  );
-};
 
 export default Register;
 export { pin };

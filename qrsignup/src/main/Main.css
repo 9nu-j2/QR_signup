@@ -60,7 +60,7 @@
   flex-direction: column;
   width: 300px;
   height: 400px;
-  border-radius: 50px;
+  border-radius: 10px;
   background: #53536c;
   box-shadow:  10px 10px 30px #47475c;
   justify-content: center;
@@ -76,7 +76,7 @@
   flex-direction: column;
   width: 300px;
   height: 400px;
-  border-radius: 50px;
+  border-radius: 10px;
   background: #53536c;
   box-shadow:  10px 10px 30px #47475c;
   justify-content: center;
@@ -129,7 +129,7 @@
     flex-direction: column;
     width: 300px;
     height: 300px;
-    border-radius: 50px;
+    border-radius: 10px;
     background: #53536c;
     box-shadow:  10px 10px 30px #47475c;
     justify-content: center;
@@ -141,7 +141,7 @@
     flex-direction: column;
     width: 300px;
     height: 300px;
-    border-radius: 50px;
+    border-radius: 10px;
     background: #53536c;
     box-shadow:  10px 10px 30px #47475c;
     justify-content: center;

@@ -5,6 +5,7 @@ import logo from '../img/kt.png';
 import { Link } from 'react-router-dom';
 
 function Main() {
+
   return (
     <div className="Master">
       <div className="Logo">
