@@ -3,24 +3,50 @@ import './Admin.css';
 import logo from '../img/kt.png'
 
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { child, get, ref } from "firebase/database";
 import { database } from "../firebase";
 
-function Admin() {
+function Admin(props) {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     id: '',
     password: '',
   }); // 멀티 인풋 값을 관리하는 state
+  
 
   const dbRef = ref(database);
 
   const { id, password } = inputs;
 
+  useEffect(()=>{
+    if(props.isLogin === true) {
+      navigate("/waiting/select");
+    }
+  })
+
   function Button() {
     return(<button onClick={onClick}>로그인</button>);
+  }
+
+  const onClick = () => {
+    get(child(dbRef, 'admin/' + `${inputs.id}`)).then((snapshot)=>{
+      if (snapshot.exists()) {
+        if (snapshot.val().password === inputs.password){
+          sessionStorage.setItem('user_id', inputs.id);
+          
+        }
+        else {
+          console.log("비밀번호가 다릅니다");
+        }
+      } else {
+        console.log("안됨");
+      }
+      document.location.href = '/waiting/admin'
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
   const onChangeId = (e) => {
@@ -40,24 +66,6 @@ function Admin() {
     });
 
   };
-
-  const onClick = () => {
-    get(child(dbRef, 'admin/' + `${inputs.id}`)).then((snapshot)=>{
-      if (snapshot.exists()) {
-        if (snapshot.val().password === inputs.password){
-          sessionStorage.setItem('user_id', inputs.id);
-          navigate("/waiting/select");
-        }
-        else {
-          console.log("비밀번호가 다릅니다");
-        }
-      } else {
-        console.log("안됨");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
 
   return (
     <div className="AdminCenter">
