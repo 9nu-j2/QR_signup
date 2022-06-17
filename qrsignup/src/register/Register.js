@@ -13,13 +13,14 @@ let storeName= '';
 
 function writeUserData(inputs, pinNumber) {
   const db = database;
-  const {id, password, name} = inputs;
+  const {id, password, name, email} = inputs;
   const expiryDate = "20220930";
   set(ref(db, 'shop/' + id), {
     password: password,
     name : name,
     pinNumber : pinNumber,
-    expiryDate : expiryDate
+    expiryDate : expiryDate,
+    email : email
   });
   set(ref(db, `${pinNumber}/`), {
     name : name,
@@ -115,7 +116,7 @@ function Right() {
     ReadData();
   },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook
 
-  const { id, password, name } = inputs;
+  const { id, password, name, email } = inputs;
 
   const onChangeId = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
@@ -161,6 +162,14 @@ function Right() {
   }; // PW input에서 타이핑이 진행되는 걸 기록하는 함수
 
   const onChangeName = (e) => {
+    const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
+    setInputs({
+      ...inputs, // 기존의 input 객체를 복사한 뒤, 하드카피
+      [name]: value // name 키를 가진 값을 value 로 설정
+    });
+  }; // 가게명 input에서 타이핑이 진행되는 걸 기록하는 함수
+
+  const onChangeEmail = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
     setInputs({
       ...inputs, // 기존의 input 객체를 복사한 뒤, 하드카피
@@ -247,6 +256,8 @@ function Right() {
             <input type="text" name="name" onChange={onChangeName} value={name}></input>
           </div>
           <div className="Compo">
+            <p>담당자 메일주소</p>
+            <input type="text" name="email" onChange={onChangeEmail} value={email}></input>
           </div>
           <div className="Compo">
           </div>
