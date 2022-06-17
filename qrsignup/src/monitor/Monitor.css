@@ -41,3 +41,34 @@
   margin-top: 10px;
   border-radius: 10px;
 }
+
+.ReqTitle {
+  display: flex;
+  justify-content: flex-start;
+  
+}
+
+.ReqTitle div {
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.UsingTitle {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.UsingTitle div {
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.NotExTitle {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.NotExTitle div {
+  padding: 10px;
+  padding-left: 30px;
+}

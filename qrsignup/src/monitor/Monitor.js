@@ -37,16 +37,40 @@ function Monitor(props) {
         </div>
         <div className="Notification">
           <div className="NotiBox">
-            <div>Title</div>
-            <div>Notis</div>
+            <div className="ReqTitle">
+              <div>사용 연장 요청</div>
+              <div>2</div>
+            </div>
+            <div>
+              <ul>
+                <li>ㅎㅇ</li>
+                <li>ㅎㅇ</li>
+              </ul>
+            </div>
           </div>
           <div className="NotiBox">
-            <div>Title</div>
-            <div>Notis</div>
+            <div className="UsingTitle">
+              <div>사용중인 가게</div>
+              <div>4</div>
+            </div>
+            <div>
+              <ul>
+                <li>ㅎㅇ</li>
+                <li>ㅎㅇ</li>
+              </ul>
+            </div>
           </div>
           <div className="NotiBox">
-            <div>Title</div>
-            <div>Notis</div>
+            <div className="NotExTitle">
+              <div>연장하지 않은 가게</div>
+              <div>1</div>
+            </div>
+            <div>
+              <ul>
+                <li>ㅎㅎ</li>
+                <li>ㅎㅎ</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
