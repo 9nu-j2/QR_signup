@@ -14,11 +14,13 @@ function App() {
   useEffect(() => {
     if(sessionStorage.getItem('user_id') === null){
     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
+      sessionChange(false);
     } else {
     // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
     // 로그인 상태 변경
-      sessionChange(true)
+      sessionChange(true);
     }
+    console.log('check');
   })
 
   return (
@@ -27,7 +29,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Master />} />
           <Route path='/wifi' element={<Wifi />}/>
-          <Route path='/waiting/admin' element={<Admin />} />
+          <Route path='/waiting/admin' element={<Admin isLogin={sessionCheck}/>} />
           <Route path='/waiting' element={<Register isLogin={sessionCheck}/>} />
           <Route path='/waiting/qr' element={<Generate isLogin={sessionCheck}/>} />
           <Route path='/waiting/select' element={<Select isLogin={sessionCheck}/>} />
