@@ -6,8 +6,86 @@ import { useState, useEffect } from 'react';
 import { child, get, set, ref } from "firebase/database";
 import { database } from "../firebase";
 
+function ExtendRequest(props) {
+  if(props.extendModal === true){
+    return (
+      <ul>
+        <li>ㅎㅇ</li>
+        <li>ㅎㅇ</li>
+      </ul>
+    );
+  }
+  else {
+    return (
+      <div></div>
+    );
+  }
+}; // 승인 요청항목 추출
+
+const UsingNow = (props)=> {
+  if(props.usingModal === true){
+    return (
+      <ul>
+        <li>ㅎㅇ</li>
+        <li>ㅎㅇ</li>
+      </ul>
+    );
+  }
+  else {
+    return (
+      <div></div>
+    );
+  }
+}; // 관리중인 가게 목록 출력
+
+const DontWantExtend = (props)=> {
+  if(props.notExtendedModal === true){
+    return (
+      <ul>
+        <li>ㅎㅇ</li>
+        <li>ㅎㅇ</li>
+      </ul>
+    );
+  }
+  else {
+    return (
+      <div></div>
+    );
+  }
+}; // 기간 만료 대상 출력
+
 function Monitor(props) {
   const navigate = useNavigate();
+  const dbRef = ref(database);
+  let [extendRequest, extendRequestChange] = useState(0);
+  let [storeList, storeListChange] = useState(0);
+  let [notExtendedList, notExtendedListChange] = useState(0);
+  // 리스트 총 계 표시를 위한 state들
+  const [objectList, setObjectList] = useState({}); // 객체 저장
+  const [datas, setDatas] = useState({
+    isWorking: "",
+    name: "",
+    product: "",
+    status: ""
+  });
+
+  let [extendModal, extendModalChange] = useState(false);
+  let [usingModal, usingModalChange] = useState(false);
+  let [notExtendedModal, notExtendedModalChange] = useState(false);
+  // 클릭시 모달 오픈/클로즈를 위한 state
+
+  useEffect(()=>{
+    get(child(dbRef, 'admin/' + `${sessionStorage.getItem('user_id')}`)).then((snapshot)=>{
+      if (snapshot.exists()) {
+        setObjectList(snapshot.val().shop_list);
+      } else {
+        
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
+  },[]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook, admin 정보 조회
 
   useEffect(()=>{
     if(props.isLogin === false) {
@@ -23,6 +101,16 @@ function Monitor(props) {
     document.location.href = '/waiting/admin';
   } // 로그아웃 기능
 
+  const onClickModal1 = ()=>{
+    extendModalChange(!extendModal);
+  }
+  const onClickModal2 = ()=>{
+    usingModalChange(!usingModal);
+  }
+  const onClickModal3 = ()=>{
+    notExtendedModalChange(!notExtendedModal);
+  }
+
   return (
     <div className="AdminDiv">
       <div className="MonitorDiv">
@@ -37,40 +125,25 @@ function Monitor(props) {
         </div>
         <div className="Notification">
           <div className="NotiBox">
-            <div className="ReqTitle">
+            <div className="ReqTitle" onClick={onClickModal1}>
               <div>사용 연장 요청</div>
-              <div>2</div>
+              <div>{extendRequest}</div>
             </div>
-            <div>
-              <ul>
-                <li>ㅎㅇ</li>
-                <li>ㅎㅇ</li>
-              </ul>
-            </div>
+            <ExtendRequest extendModal={extendModal} objectList={objectList}></ExtendRequest>
           </div>
           <div className="NotiBox">
-            <div className="UsingTitle">
+            <div className="UsingTitle" onClick={onClickModal2}>
               <div>사용중인 가게</div>
-              <div>4</div>
+              <div>{storeList}</div>
             </div>
-            <div>
-              <ul>
-                <li>ㅎㅇ</li>
-                <li>ㅎㅇ</li>
-              </ul>
-            </div>
+            <UsingNow usingModal={usingModal} objectList={objectList}></UsingNow>
           </div>
           <div className="NotiBox">
-            <div className="NotExTitle">
+            <div className="NotExTitle" onClick={onClickModal3}>
               <div>연장하지 않은 가게</div>
-              <div>1</div>
+              <div>{notExtendedList}</div>
             </div>
-            <div>
-              <ul>
-                <li>ㅎㅎ</li>
-                <li>ㅎㅎ</li>
-              </ul>
-            </div>
+            <DontWantExtend notExtendedModal={notExtendedModal} objectList={objectList}></DontWantExtend>
           </div>
         </div>
       </div>
