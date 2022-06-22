@@ -25,8 +25,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aliceblue;
+  background-color: #c3dbf3;
   border-radius: 10px;
+}
+
+.AboutAdmin {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.AboutAdmin2 {
+  font-family: "YdestreetL";
+  font-size: 14px;
 }
 
 .Notification {
@@ -37,7 +47,6 @@
 
 .NotiBox {
   width: 480px;
-  background-color: darkgray;
   margin-top: 10px;
   border-radius: 10px;
 }
@@ -45,30 +54,173 @@
 .ReqTitle {
   display: flex;
   justify-content: flex-start;
-  
+  align-items: center;
+  height: 50px;
+  font-size: 22px;
 }
 
-.ReqTitle div {
+.ReqPart1 {
   padding: 10px;
-  padding-left: 30px;
-}
-
-.UsingTitle {
+  padding-left: 15px;
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
 }
 
-.UsingTitle div {
+.ReqPart2 {
   padding: 10px;
-  padding-left: 30px;
-}
-
-.NotExTitle {
+  padding-left: 15px;
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
 }
 
-.NotExTitle div {
-  padding: 10px;
-  padding-left: 30px;
+.ReqTotal {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: #fd2b45;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ReqTotal p {
+  color: white;
+  margin: 0;
+  font-size: 10px;
+}
+
+.ReqBottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.ReqList {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+.RLCircle {
+  width: 30px;
+  height: 30px;
+  margin-left: 15px;
+  background-color: #4234f4;
+  border-radius: 50%;
+}
+
+#circle1 {
+  background-color: #4234f4;
+}
+
+#circle2 {
+  background-color: #acbed6;
+}
+
+#circle3 {
+  background-color: #fd2b45;
+}
+
+.RLName {
+  width: 355px;
+  margin-left: 15px;
+  display: flex;
+}
+
+.RLName p {
+  font-family: "YdestreetL";
+}
+
+.RLbutton {
+  margin-left: 15px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.RLbutton button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #6455ef;
+}
+
+.RLbutton button:hover {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #a8b0f6;
+  cursor: pointer;
+}
+
+.Line {
+  border-top: 1px;
+}
+
+@media all and (min-width: 280px) and (max-width: 520px) {
+  /*스타일입력*/
+  .MonitorDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .AdminPart {
+    margin-top: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 95%;
+    height: 300%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c3dbf3;
+    border-radius: 10px;
+  }
+
+  .Notification {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .NotiBox {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+
+  .ReqBottom {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ReqList {
+    display: flex;
+    height: 50px;
+    align-items: center;
+  }
+
+  .RLCircle {
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    background-color: #4234f4;
+    border-radius: 50%;
+  }
+
+  .RLName {
+    margin-left: 15px;
+    display: flex;
+  }
 }

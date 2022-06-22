@@ -1,13 +1,22 @@
 @font-face {
-  font-family: 'YdestreetB';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetB.woff2') format('woff2');
+  font-family: "YdestreetB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetB.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "YdestreetL";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetL.woff2")
+    format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 .App {
   text-align: center;
-  font-family: 'YdestreetB';
+  font-family: "YdestreetB";
   height: 100vh;
 }
 

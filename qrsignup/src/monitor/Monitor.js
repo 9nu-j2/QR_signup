@@ -11,6 +11,7 @@ function Monitor(props) {
   const dbRef = ref(database);
 
   const [objectList, setObjectList] = useState([]); // 객체 저장
+  let [adminAbout, setAdminAbout] = useState([]);
 
   let [sampling, setSampling] = useState(0);
   let [sampling1, setSampling1] = useState(0);
@@ -26,6 +27,7 @@ function Monitor(props) {
       .then((snapshot) => {
         if (snapshot.exists()) {
           setObjectList(Object.entries(snapshot.val().shop_list));
+          setAdminAbout(snapshot.val());
         } else {
         }
       })
@@ -78,14 +80,26 @@ function Monitor(props) {
     setSampling2(countArray[2]);
   };
 
-  const extendComp = (props) => {
+  const onClickAccept = () => {};
+
+  const ExtendComp = (props) => {
     if (props.extendModal === true) {
       return (
-        <div>
+        <div className="ReqBottom">
           {props.objectList.map((el) => {
             const { name, status } = el[1];
             if (status === "onProgress") {
-              return <div>{name}</div>;
+              return (
+                <div className="ReqList">
+                  <div className="RLCircle" id="circle1"></div>
+                  <div className="RLName">
+                    <p>{name}</p>
+                  </div>
+                  <div className="RLbutton">
+                    <button onClick="onClickAccept">승인</button>
+                  </div>
+                </div>
+              );
             }
           })}
         </div>
@@ -95,14 +109,22 @@ function Monitor(props) {
     }
   }; // 승인 요청항목 추출
 
-  const usingNow = (props) => {
+  const UsingNow = (props) => {
     if (props.usingModal === true) {
       return (
-        <div>
+        <div className="ReqBottom">
           {props.objectList.map((el) => {
             const { name, status } = el[1];
             if (status === "isPermitted") {
-              return <div>{name}</div>;
+              return (
+                <div className="ReqList">
+                  <div className="RLCircle" id="circle2"></div>
+                  <div className="RLName">
+                    <p>{name}</p>
+                  </div>
+                  <div className="RLbutton"></div>
+                </div>
+              );
             }
           })}
         </div>
@@ -112,14 +134,22 @@ function Monitor(props) {
     }
   }; // 관리중인 가게 목록 출력
 
-  const dontWantExtend = (props) => {
+  const DontWantExtend = (props) => {
     if (props.notExtendedModal === true) {
       return (
-        <div>
+        <div className="ReqBottom">
           {props.objectList.map((el) => {
-            const { id, status } = el;
-            if (el[1].isWorking === false) {
-              return <div>{el[1].name}</div>;
+            const { name, isWorking } = el[1];
+            if (isWorking === false) {
+              return (
+                <div className="ReqList">
+                  <div className="RLCircle" id="circle3"></div>
+                  <div className="RLName">
+                    <p>{name}</p>
+                  </div>
+                  <div className="RLbutton"></div>
+                </div>
+              );
             }
           })}
         </div>
@@ -137,40 +167,52 @@ function Monitor(props) {
         </div>
         <div className="AdminPart">
           <div className="IconBox"></div>
-          <p>관리자 정보(아이디)</p>
-          <p>관리자 소속</p>
+          <p className="AboutAdmin">{sessionStorage.getItem("user_id")}</p>
+          <p className="AboutAdmin2">{adminAbout.email}</p>
           <button onClick={onClickLogout}>로그아웃</button>
         </div>
         <div className="Notification">
           <div className="NotiBox">
             <div className="ReqTitle" onClick={onClickModal1}>
-              <div>사용 연장 요청</div>
-              <div>{sampling}</div>
+              <div className="ReqPart1">사용 연장 요청</div>
+              <div className="ReqPart2">
+                <div className="ReqTotal">
+                  {sampling === 0 ? <p></p> : <p>{sampling}</p>}
+                </div>
+              </div>
             </div>
-            <extendComp
+            <ExtendComp
               extendModal={extendModal}
               objectList={objectList}
-            ></extendComp>
+            ></ExtendComp>
           </div>
           <div className="NotiBox">
-            <div className="UsingTitle" onClick={onClickModal2}>
-              <div>사용중인 가게</div>
-              <div>{sampling1}</div>
+            <div className="ReqTitle" onClick={onClickModal2}>
+              <div className="ReqPart1">사용중인 가게</div>
+              <div className="ReqPart2">
+                <div className="ReqTotal">
+                  {sampling1 === 0 ? <p></p> : <p>{sampling1}</p>}
+                </div>
+              </div>
             </div>
-            <usingNow
+            <UsingNow
               usingModal={usingModal}
               objectList={objectList}
-            ></usingNow>
+            ></UsingNow>
           </div>
           <div className="NotiBox">
-            <div className="NotExTitle" onClick={onClickModal3}>
-              <div>연장하지 않은 가게</div>
-              <div>{sampling2}</div>
+            <div className="ReqTitle" onClick={onClickModal3}>
+              <div className="ReqPart1">연장하지 않은 가게</div>
+              <div className="ReqPart2">
+                <div className="ReqTotal">
+                  {sampling2 === 0 ? <p></p> : <p>{sampling2}</p>}
+                </div>
+              </div>
             </div>
-            <dontWantExtend
+            <DontWantExtend
               notExtendedModal={notExtendedModal}
               objectList={objectList}
-            ></dontWantExtend>
+            ></DontWantExtend>
           </div>
         </div>
       </div>
