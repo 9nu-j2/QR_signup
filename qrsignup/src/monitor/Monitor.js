@@ -3,19 +3,25 @@ import logo from "../img/kt.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { child, get, set, ref } from "firebase/database";
+import { getDatabase, child, get, set, ref, update } from "firebase/database";
 import { database } from "../firebase";
 
 function Monitor(props) {
   const navigate = useNavigate();
   const dbRef = ref(database);
+  const db = getDatabase();
+  const updates = {};
 
   const [objectList, setObjectList] = useState([]); // 객체 저장
   let [adminAbout, setAdminAbout] = useState([]);
+  let [shopAbout, setShopAbout] = useState([]);
+  let [userId, setUserId] = useState("");
 
   let [sampling, setSampling] = useState(0);
   let [sampling1, setSampling1] = useState(0);
   let [sampling2, setSampling2] = useState(0);
+
+  let [readTrigger, setReadTrigger] = useState(false);
 
   let [extendModal, extendModalChange] = useState(false);
   let [usingModal, usingModalChange] = useState(false);
@@ -34,11 +40,70 @@ function Monitor(props) {
       .catch((error) => {
         console.error(error);
       });
-  }, []); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook, admin 정보 조회
+  }, [readTrigger]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook, admin 정보 조회
 
   useEffect(() => {
     countFiltering();
   }, [objectList]);
+
+  useEffect(() => {
+    if (readTrigger === true) {
+      get(child(dbRef, "shop/" + userId))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setShopAbout(snapshot.val());
+          } else {
+            console.log("No data available");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [readTrigger]);
+
+  useEffect(() => {
+    if (readTrigger === true) {
+      console.log(adminAbout.isWorking);
+      if (
+        adminAbout.isWorking === false &&
+        adminAbout.status === "onProgress"
+      ) {
+        updates[
+          "admin/" +
+            `${sessionStorage.getItem("user_id")}` +
+            "/shop_list/" +
+            userId +
+            "/isWorking"
+        ] = true;
+
+        updates[
+          "admin/" +
+            `${sessionStorage.getItem("user_id")}` +
+            "/shop_list/" +
+            userId +
+            "/status"
+        ] = "isPermitted";
+        console.log("good");
+
+        // updates["shop/" + userId + "/expiryDate"] = "20230101"; //날짜 계산 파트 필요
+        update(ref(db), updates);
+        setReadTrigger(false);
+      } else {
+        updates[
+          "admin/" +
+            `${sessionStorage.getItem("user_id")}` +
+            "/shop_list/" +
+            userId +
+            "/status"
+        ] = "isPermitted";
+
+        // updates["shop/" + userId + "/expiryDate"] = shopAbout.expiryDate; //날짜 계산 파트 필요
+        update(ref(db), updates);
+        setReadTrigger(false);
+      }
+    }
+  }, [shopAbout, readTrigger]); //여기마저 해야함
 
   useEffect(() => {
     if (props.isLogin === false) {
@@ -53,9 +118,6 @@ function Monitor(props) {
     document.location.href = "/waiting/admin";
   }; // 로그아웃 기능
 
-  const onClickModal1 = () => {
-    extendModalChange(!extendModal);
-  };
   const onClickModal2 = () => {
     usingModalChange(!usingModal);
   };
@@ -69,7 +131,10 @@ function Monitor(props) {
     objectList.forEach((el) => {
       if (el[1].status === "onProgress") {
         countArray[0]++;
-      } else if (el[1].status === "isPermitted") {
+        if (el[1].isWorking === true) {
+          countArray[1]++;
+        }
+      } else if (el[1].isWorking === true) {
         countArray[1]++;
       } else if (el[1].isWorking === false) {
         countArray[2]++;
@@ -80,33 +145,33 @@ function Monitor(props) {
     setSampling2(countArray[2]);
   };
 
-  const onClickAccept = () => {};
+  function onClickAccept(shop_id) {
+    const id = shop_id;
+    setUserId(id);
+    setReadTrigger(true);
+  }
 
   const ExtendComp = (props) => {
-    if (props.extendModal === true) {
-      return (
-        <div className="ReqBottom">
-          {props.objectList.map((el) => {
-            const { name, status } = el[1];
-            if (status === "onProgress") {
-              return (
-                <div className="ReqList">
-                  <div className="RLCircle" id="circle1"></div>
-                  <div className="RLName">
-                    <p>{name}</p>
-                  </div>
-                  <div className="RLbutton">
-                    <button onClick="onClickAccept">승인</button>
-                  </div>
+    return (
+      <div className="ReqBottom">
+        {props.objectList.map((el) => {
+          const { name, status } = el[1];
+          if (status === "onProgress") {
+            return (
+              <div className="ReqList">
+                <div className="RLCircle" id="circle1"></div>
+                <div className="RLName">
+                  <p>{name}</p>
                 </div>
-              );
-            }
-          })}
-        </div>
-      );
-    } else {
-      return <div></div>;
-    }
+                <div className="RLbutton">
+                  <button onClick={() => onClickAccept(el[0])}>승인</button>
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
+    );
   }; // 승인 요청항목 추출
 
   const UsingNow = (props) => {
@@ -114,8 +179,8 @@ function Monitor(props) {
       return (
         <div className="ReqBottom">
           {props.objectList.map((el) => {
-            const { name, status } = el[1];
-            if (status === "isPermitted") {
+            const { name, isWorking } = el[1];
+            if (isWorking === true) {
               return (
                 <div className="ReqList">
                   <div className="RLCircle" id="circle2"></div>
@@ -169,16 +234,20 @@ function Monitor(props) {
           <div className="IconBox"></div>
           <p className="AboutAdmin">{sessionStorage.getItem("user_id")}</p>
           <p className="AboutAdmin2">{adminAbout.email}</p>
-          <button onClick={onClickLogout}>로그아웃</button>
+          <button onClick={() => onClickLogout}>로그아웃</button>
         </div>
         <div className="Notification">
           <div className="NotiBox">
-            <div className="ReqTitle" onClick={onClickModal1}>
+            <div className="ReqTitle">
               <div className="ReqPart1">사용 연장 요청</div>
               <div className="ReqPart2">
-                <div className="ReqTotal">
-                  {sampling === 0 ? <p></p> : <p>{sampling}</p>}
-                </div>
+                {sampling === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="ReqTotal">
+                    <p>{sampling}</p>
+                  </div>
+                )}
               </div>
             </div>
             <ExtendComp
@@ -190,9 +259,13 @@ function Monitor(props) {
             <div className="ReqTitle" onClick={onClickModal2}>
               <div className="ReqPart1">사용중인 가게</div>
               <div className="ReqPart2">
-                <div className="ReqTotal">
-                  {sampling1 === 0 ? <p></p> : <p>{sampling1}</p>}
-                </div>
+                {sampling1 === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="ReqTotal">
+                    <p>{sampling1}</p>
+                  </div>
+                )}
               </div>
             </div>
             <UsingNow
@@ -204,9 +277,13 @@ function Monitor(props) {
             <div className="ReqTitle" onClick={onClickModal3}>
               <div className="ReqPart1">연장하지 않은 가게</div>
               <div className="ReqPart2">
-                <div className="ReqTotal">
-                  {sampling2 === 0 ? <p></p> : <p>{sampling2}</p>}
-                </div>
+                {sampling2 === 0 ? (
+                  <div></div>
+                ) : (
+                  <div className="ReqTotal">
+                    <p>{sampling2}</p>
+                  </div>
+                )}
               </div>
             </div>
             <DontWantExtend
