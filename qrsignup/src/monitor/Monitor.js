@@ -3,6 +3,8 @@ import logo from "../img/kt.png";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import { getExpriyDate } from "../utils/Time";
+
 import { getDatabase, child, get, set, ref, update } from "firebase/database";
 import { database } from "../firebase";
 
@@ -10,18 +12,20 @@ function Monitor(props) {
   const navigate = useNavigate();
   const dbRef = ref(database);
   const db = getDatabase();
-  const updates = {};
 
   const [objectList, setObjectList] = useState([]); // 객체 저장
   let [adminAbout, setAdminAbout] = useState([]);
   let [shopAbout, setShopAbout] = useState([]);
   let [userId, setUserId] = useState("");
+  let [shopNow, setShopNow] = useState([]);
 
   let [sampling, setSampling] = useState(0);
   let [sampling1, setSampling1] = useState(0);
   let [sampling2, setSampling2] = useState(0);
 
   let [readTrigger, setReadTrigger] = useState(false);
+
+  const [startDate, setStartDate] = useState("");
 
   let [extendModal, extendModalChange] = useState(false);
   let [usingModal, usingModalChange] = useState(false);
@@ -63,12 +67,9 @@ function Monitor(props) {
   }, [readTrigger]);
 
   useEffect(() => {
+    const updates = {};
     if (readTrigger === true) {
-      console.log(adminAbout.isWorking);
-      if (
-        adminAbout.isWorking === false &&
-        adminAbout.status === "onProgress"
-      ) {
+      if (shopNow.isWorking === false && shopNow.status === "onProgress") {
         updates[
           "admin/" +
             `${sessionStorage.getItem("user_id")}` +
@@ -84,9 +85,8 @@ function Monitor(props) {
             userId +
             "/status"
         ] = "isPermitted";
-        console.log("good");
 
-        // updates["shop/" + userId + "/expiryDate"] = "20230101"; //날짜 계산 파트 필요
+        updates["shop/" + userId + "/expiryDate"] = _handle60day();
         update(ref(db), updates);
         setReadTrigger(false);
       } else {
@@ -98,7 +98,7 @@ function Monitor(props) {
             "/status"
         ] = "isPermitted";
 
-        // updates["shop/" + userId + "/expiryDate"] = shopAbout.expiryDate; //날짜 계산 파트 필요
+        updates["shop/" + userId + "/expiryDate"] = _handle60day();
         update(ref(db), updates);
         setReadTrigger(false);
       }
@@ -120,7 +120,9 @@ function Monitor(props) {
 
   const onClickModal2 = () => {
     usingModalChange(!usingModal);
+    console.log(startDate);
   };
+
   const onClickModal3 = () => {
     notExtendedModalChange(!notExtendedModal);
   };
@@ -145,6 +147,24 @@ function Monitor(props) {
     setSampling2(countArray[2]);
   };
 
+  const _handle60day = () => {
+    const today = new Date();
+    today.setDate(today.getDate() + 60);
+    console.log(today);
+
+    let year1 = String(today.getFullYear());
+    let month1 = String(today.getMonth() + 1);
+    let day1 = String(today.getDate());
+
+    let newDate = String(
+      year1 +
+        (month1.length === 1 ? "0" + month1 : month1) +
+        (day1.length === 1 ? "0" + day1 : day1)
+    );
+    setStartDate(newDate);
+    return newDate;
+  }; // 시간 계산하자
+
   function onClickAccept(shop_id) {
     const id = shop_id;
     setUserId(id);
@@ -157,6 +177,7 @@ function Monitor(props) {
         {props.objectList.map((el) => {
           const { name, status } = el[1];
           if (status === "onProgress") {
+            setShopNow(el[1]);
             return (
               <div className="ReqList">
                 <div className="RLCircle" id="circle1"></div>
