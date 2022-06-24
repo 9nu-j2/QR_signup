@@ -120,7 +120,6 @@ function Monitor(props) {
 
   const onClickModal2 = () => {
     usingModalChange(!usingModal);
-    console.log(startDate);
   };
 
   const onClickModal3 = () => {
