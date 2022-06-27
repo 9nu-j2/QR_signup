@@ -2,13 +2,13 @@
   "hosting": {
     "site": "qr-waiting-signup",
     "public": "build",
-    "ignore": [
-      "**/.*",
-      "**/node_modules/**"
-    ],
     "rewrites": [{
       "source": "**",
       "destination": "/index.html"
-      }]
+      }],
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }
