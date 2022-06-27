@@ -41,7 +41,7 @@ function Admin(props) {
         } else {
           console.log("안됨");
         }
-        document.location.href = "waiting";
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
