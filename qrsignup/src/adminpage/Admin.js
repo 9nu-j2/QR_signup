@@ -27,6 +27,10 @@ function Admin(props) {
     }
   });
 
+  useEffect(() => {
+    sessionStorage.setItem("user_id", inputs.id);
+  }, [loginStatus]);
+
   function Button() {
     return <button onClick={() => onClick}>로그인</button>;
   }
@@ -36,14 +40,13 @@ function Admin(props) {
       .then((snapshot) => {
         if (snapshot.exists()) {
           if (snapshot.val().password === inputs.password) {
-            sessionStorage.setItem("user_id", inputs.id);
+            setLoginStatus(!loginStatus);
           } else {
             console.log("비밀번호가 다릅니다");
           }
         } else {
           console.log("안됨");
         }
-        setLoginStatus(true);
       })
       .catch((error) => {
         console.error(error);
