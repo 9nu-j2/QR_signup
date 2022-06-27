@@ -1,9 +1,9 @@
-import './Admin.css';
+import "./Admin.css";
 
-import logo from '../img/kt.png'
+import logo from "../img/kt.png";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 import { child, get, ref } from "firebase/database";
 import { database } from "../firebase";
@@ -11,60 +11,59 @@ import { database } from "../firebase";
 function Admin(props) {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
-    id: '',
-    password: '',
+    id: "",
+    password: "",
   }); // 멀티 인풋 값을 관리하는 state
-  
+
+  let [loginStatus, setLoginStatus] = useState(false);
 
   const dbRef = ref(database);
 
   const { id, password } = inputs;
 
-  useEffect(()=>{
-    if(props.isLogin === true) {
+  useEffect(() => {
+    if (props.isLogin === true) {
       navigate("/waiting/select");
     }
-  })
+  }, [loginStatus]);
 
   function Button() {
-    return(<button onClick={onClick}>로그인</button>);
+    return <button onClick={onClick}>로그인</button>;
   }
 
   const onClick = () => {
-    get(child(dbRef, 'admin/' + `${inputs.id}`)).then((snapshot)=>{
-      if (snapshot.exists()) {
-        if (snapshot.val().password === inputs.password){
-          sessionStorage.setItem('user_id', inputs.id);
-          
+    get(child(dbRef, "admin/" + `${inputs.id}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          if (snapshot.val().password === inputs.password) {
+            sessionStorage.setItem("user_id", inputs.id);
+            setLoginStatus(true);
+          } else {
+            console.log("비밀번호가 다릅니다");
+          }
+        } else {
+          console.log("안됨");
         }
-        else {
-          console.log("비밀번호가 다릅니다");
-        }
-      } else {
-        console.log("안됨");
-      }
-      document.location.href = '/waiting/admin'
-    }).catch((error) => {
-      console.error(error);
-    });
-  }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const onChangeId = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
     setInputs({
       ...inputs, // 기존의 input 객체를 복사한 뒤, 하드카피
-      [name]: value // name 키를 가진 값을 value 로 설정
+      [name]: value, // name 키를 가진 값을 value 로 설정
     });
-    
   };
 
   const onChangePw = (e) => {
     const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
     setInputs({
       ...inputs, // 기존의 input 객체를 복사한 뒤, 하드카피
-      [name]: value // name 키를 가진 값을 value 로 설정
+      [name]: value, // name 키를 가진 값을 value 로 설정
     });
-
   };
 
   return (
@@ -80,10 +79,14 @@ function Admin(props) {
         </div>
         <div className="Compo">
           <p>비밀번호</p>
-          <input type="password" name="password" onChange={onChangePw} value={password}></input>
+          <input
+            type="password"
+            name="password"
+            onChange={onChangePw}
+            value={password}
+          ></input>
         </div>
-        <div className="Compo">
-        </div>
+        <div className="Compo"></div>
         <div className="Compo">
           <Button></Button>
         </div>

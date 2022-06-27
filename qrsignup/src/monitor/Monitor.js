@@ -5,7 +5,7 @@ import icon from "../img/icon.ico";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { getDatabase, child, get, set, ref, update } from "firebase/database";
+import { getDatabase, child, get, ref, update } from "firebase/database";
 import { database } from "../firebase";
 
 function Monitor(props) {
@@ -107,7 +107,7 @@ function Monitor(props) {
 
   useEffect(() => {
     if (props.isLogin === false) {
-      navigate("/waiting/admin");
+      navigate("/waiting");
     }
   }); // 세션 유지 여부 확인, 접근 제한
 
@@ -115,7 +115,7 @@ function Monitor(props) {
     // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
     sessionStorage.removeItem("user_id");
     // App 으로 이동(새로고침)
-    document.location.href = "/waiting/admin";
+    navigate("/waiting");
   }; // 로그아웃 기능
 
   const onClickModal2 = () => {

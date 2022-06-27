@@ -29,7 +29,7 @@ function Select(props) {
 
   useEffect(() => {
     if (props.isLogin === false) {
-      navigate("/waiting/admin");
+      navigate("/waiting");
       console.log(props.isLogin);
     }
   }); // 세션 유지 여부 확인, 접근 제한
@@ -38,7 +38,7 @@ function Select(props) {
     // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
     sessionStorage.removeItem("user_id");
     // App 으로 이동(새로고침)
-    document.location.href = "/waiting/admin";
+    navigate("/waiting");
   }; // 로그아웃 기능
 
   return (
@@ -56,7 +56,7 @@ function Select(props) {
       </div>
       <div className="AdminSelect">
         <button>
-          <div className="AdminMenu" onClick={() => navigate("/waiting")}>
+          <div className="AdminMenu" onClick={() => navigate("/waiting/shop")}>
             <p>신규 고객</p>
             <p>등록하기</p>
           </div>
