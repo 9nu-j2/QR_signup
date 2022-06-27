@@ -38,7 +38,7 @@ function Select(props) {
     // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
     sessionStorage.removeItem("user_id");
     // App 으로 이동(새로고침)
-    navigate("/waiting");
+    document.location.href = "/waiting";
   }; // 로그아웃 기능
 
   return (
