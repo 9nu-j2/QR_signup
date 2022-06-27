@@ -37,13 +37,13 @@ function Admin(props) {
         if (snapshot.exists()) {
           if (snapshot.val().password === inputs.password) {
             sessionStorage.setItem("user_id", inputs.id);
-            setLoginStatus(true);
           } else {
             console.log("비밀번호가 다릅니다");
           }
         } else {
           console.log("안됨");
         }
+        setLoginStatus(true);
       })
       .catch((error) => {
         console.error(error);
