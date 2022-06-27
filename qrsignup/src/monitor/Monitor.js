@@ -1,9 +1,9 @@
 import "./Monitor.css";
 import logo from "../img/kt.png";
+import icon from "../img/icon.ico";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-
-import { getExpriyDate } from "../utils/Time";
 
 import { getDatabase, child, get, set, ref, update } from "firebase/database";
 import { database } from "../firebase";
@@ -251,10 +251,12 @@ function Monitor(props) {
           <img src={logo}></img>
         </div>
         <div className="AdminPart">
-          <div className="IconBox"></div>
+          <div className="IconBox">
+            <img src={icon}></img>
+          </div>
           <p className="AboutAdmin">{sessionStorage.getItem("user_id")}</p>
           <p className="AboutAdmin2">{adminAbout.email}</p>
-          <button onClick={() => onClickLogout}>로그아웃</button>
+          <button onClick={onClickLogout}>로그아웃</button>
         </div>
         <div className="Notification">
           <div className="NotiBox">

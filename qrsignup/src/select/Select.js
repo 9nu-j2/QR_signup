@@ -1,6 +1,7 @@
 import "./Select.css";
 
 import logo from "../img/kt.png";
+import icon from "../img/icon.ico";
 
 import { child, get, set, ref } from "firebase/database";
 import { database } from "../firebase";
@@ -46,7 +47,9 @@ function Select(props) {
         <img src={logo}></img>
       </div>
       <div className="Half">
-        <div className="IconBox"></div>
+        <div className="IconBox">
+          <img src={icon}></img>
+        </div>
         <p className="AboutAdmin">{sessionStorage.getItem("user_id")}</p>
         <p className="AboutAdmin2">{adminAbout.email}</p>
         <button onClick={onClickLogout}>로그아웃</button>
