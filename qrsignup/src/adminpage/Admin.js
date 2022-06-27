@@ -25,10 +25,10 @@ function Admin(props) {
     if (props.isLogin === true) {
       navigate("/waiting/select");
     }
-  }, [loginStatus]);
+  });
 
   function Button() {
-    return <button onClick={onClick}>로그인</button>;
+    return <button onClick={() => onClick}>로그인</button>;
   }
 
   const onClick = () => {
