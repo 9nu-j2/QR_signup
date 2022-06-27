@@ -15,8 +15,6 @@ function Admin(props) {
     password: "",
   }); // 멀티 인풋 값을 관리하는 state
 
-  let [loginStatus, setLoginStatus] = useState(false);
-
   const dbRef = ref(database);
 
   const { id, password } = inputs;
@@ -27,12 +25,8 @@ function Admin(props) {
     }
   });
 
-  useEffect(() => {
-    sessionStorage.setItem("user_id", inputs.id);
-  }, [loginStatus]);
-
   function Button() {
-    return <button onClick={() => onClick}>로그인</button>;
+    return <button onClick={onClick}>로그인</button>;
   }
 
   const onClick = () => {
@@ -40,13 +34,14 @@ function Admin(props) {
       .then((snapshot) => {
         if (snapshot.exists()) {
           if (snapshot.val().password === inputs.password) {
-            setLoginStatus(!loginStatus);
+            sessionStorage.setItem("user_id", inputs.id);
           } else {
             console.log("비밀번호가 다릅니다");
           }
         } else {
           console.log("안됨");
         }
+        document.location.href = "waiting";
       })
       .catch((error) => {
         console.error(error);
