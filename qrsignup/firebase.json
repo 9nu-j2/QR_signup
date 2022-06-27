@@ -3,7 +3,6 @@
     "site": "qr-waiting-signup",
     "public": "build",
     "ignore": [
-      "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
