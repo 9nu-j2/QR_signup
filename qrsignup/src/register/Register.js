@@ -122,7 +122,6 @@ function Right() {
       get(child(dbRef, `${result3}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
-            console.log(snapshot.val());
             ReadData();
           } else {
             resultC(result3);
@@ -163,7 +162,6 @@ function Right() {
       .then((snapshot) => {
         if (snapshot.exists()) {
           버튼변경(1);
-          idCheckC(true);
         } else {
           버튼변경(3);
         }
@@ -180,12 +178,14 @@ function Right() {
       [name]: value, // name 키를 가진 값을 value 로 설정
     });
 
-    get(child(dbRef, "shop/" + `${inputs.id}/password`))
+    get(child(dbRef, "shop/" + `${inputs.id}`))
       .then((snapshot) => {
-        if (snapshot.val() === value && idCheck === true) {
-          버튼변경(2);
-        } else if (snapshot.val() !== value && idCheck === true) {
-          버튼변경(1);
+        if (snapshot.exists()) {
+          if (snapshot.val().password === value) {
+            버튼변경(2);
+          } else if (snapshot.val().password !== value) {
+            버튼변경(1);
+          }
         } else {
           버튼변경(3);
         }
@@ -231,11 +231,11 @@ function Right() {
 
   function Button() {
     if (버튼 === 1) {
-      return <button onClick={onClickFalse}>QR생성하기</button>;
+      return <button onClick={onClickFalse}>QR생성하기 1</button>;
     } else if (버튼 === 2) {
-      return <button onClick={onClickExist}>QR생성하기</button>;
+      return <button onClick={onClickExist}>QR생성하기 2</button>;
     } else if (버튼 === 3) {
-      return <button onClick={onClick}>QR생성하기</button>;
+      return <button onClick={onClick}>QR생성하기 3</button>;
     }
   } // 유효성 검사 결과에 따른 버튼 기능 변경
 
