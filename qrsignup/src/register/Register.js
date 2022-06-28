@@ -32,6 +32,15 @@ function writeUserData(inputs, pinNumber, mail) {
     today: today,
     waitingTime: "10",
   });
+  set(
+    ref(db, "admin/" + `${sessionStorage.getItem("user_id")}/` + "shop_list"),
+    {
+      isWorking: true,
+      name: name,
+      product: "none",
+      status: "isPermitted",
+    }
+  );
 } // 데이터베이스에 기록하는 함수
 
 function Register(props) {
