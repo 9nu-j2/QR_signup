@@ -33,7 +33,10 @@ function writeUserData(inputs, pinNumber, mail) {
     waitingTime: "10",
   });
   set(
-    ref(db, "admin/" + `${sessionStorage.getItem("user_id")}/` + "shop_list"),
+    ref(
+      db,
+      "admin/" + `${sessionStorage.getItem("user_id")}/` + "shop_list" + id
+    ),
     {
       isWorking: true,
       name: name,
