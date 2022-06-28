@@ -35,7 +35,7 @@ function writeUserData(inputs, pinNumber, mail) {
   set(
     ref(
       db,
-      "admin/" + `${sessionStorage.getItem("user_id")}/` + "shop_list" + id
+      "admin/" + `${sessionStorage.getItem("user_id")}/` + "shop_list/" + id
     ),
     {
       isWorking: true,
