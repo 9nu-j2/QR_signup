@@ -14,15 +14,15 @@ let pin;
 let today = 0;
 let storeName = "";
 
-function writeUserData(inputs, pinNumber, mail) {
+function writeUserData(inputs, pinNumber, mail, newDate) {
   const db = database;
   const { id, password, name } = inputs;
-  const expiryDate = getExpriyDate();
+
   set(ref(db, "shop/" + id), {
     password: password,
     name: name,
     pinNumber: pinNumber,
-    expiryDate: expiryDate,
+    expiryDate: newDate,
     admin_email: mail,
     admin_id: sessionStorage.getItem("user_id"),
   });
@@ -102,6 +102,8 @@ function Right() {
   let [아이디확인, 아이디확인변경] = useState(false); // 아이디 존재여부 검사 후 경고문구 표시를 위한 state
   let [email, setEmail] = useState("");
 
+  const [startDate, setStartDate] = useState("");
+
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
@@ -110,6 +112,23 @@ function Right() {
     name: "",
   }); // 멀티 인풋 값을 관리하는 state
   const dbRef = ref(database);
+
+  const _handle60day = () => {
+    const today = new Date();
+    today.setDate(today.getDate() + 60);
+
+    let year1 = String(today.getFullYear());
+    let month1 = String(today.getMonth() + 1);
+    let day1 = String(today.getDate());
+
+    let newDate = String(
+      year1 +
+        (month1.length === 1 ? "0" + month1 : month1) +
+        (day1.length === 1 ? "0" + day1 : day1)
+    );
+    setStartDate(newDate);
+    return newDate;
+  };
 
   useEffect(() => {
     function RandomPin() {
@@ -228,7 +247,7 @@ function Right() {
 
   const onClick = () => {
     storeName = inputs.name; // qr페이지로 데이터 전달하기 위해 저장
-    writeUserData(inputs, result, email); // 데이터 쓰기 작업
+    writeUserData(inputs, result, email, _handle60day()); // 데이터 쓰기 작업
     navigate("/waiting/qr");
   }; // 버튼 클릭시 실행되는 함수
 

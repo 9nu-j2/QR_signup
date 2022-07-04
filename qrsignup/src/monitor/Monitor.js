@@ -149,7 +149,6 @@ function Monitor(props) {
   const _handle60day = () => {
     const today = new Date();
     today.setDate(today.getDate() + 60);
-    console.log(today);
 
     let year1 = String(today.getFullYear());
     let month1 = String(today.getMonth() + 1);
@@ -162,7 +161,7 @@ function Monitor(props) {
     );
     setStartDate(newDate);
     return newDate;
-  }; // 시간 계산하자
+  };
 
   function onClickAccept(shop_id) {
     const id = shop_id;
