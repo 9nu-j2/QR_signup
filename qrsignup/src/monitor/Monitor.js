@@ -2,6 +2,8 @@ import "./Monitor.css";
 import logo from "../img/kt.png";
 import icon from "../img/icon.ico";
 
+import { handleDay } from "../utils/Time";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -24,8 +26,6 @@ function Monitor(props) {
   let [sampling2, setSampling2] = useState(0);
 
   let [readTrigger, setReadTrigger] = useState(false);
-
-  const [startDate, setStartDate] = useState("");
 
   let [extendModal, extendModalChange] = useState(false);
   let [usingModal, usingModalChange] = useState(false);
@@ -86,7 +86,7 @@ function Monitor(props) {
             "/status"
         ] = "isPermitted";
 
-        updates["shop/" + userId + "/expiryDate"] = _handle60day();
+        updates["shop/" + userId + "/expiryDate"] = handleDay(365);
         update(ref(db), updates);
         setReadTrigger(false);
       } else {
@@ -98,7 +98,7 @@ function Monitor(props) {
             "/status"
         ] = "isPermitted";
 
-        updates["shop/" + userId + "/expiryDate"] = _handle60day();
+        updates["shop/" + userId + "/expiryDate"] = handleDay(365);
         update(ref(db), updates);
         setReadTrigger(false);
       }
@@ -144,23 +144,6 @@ function Monitor(props) {
     setSampling(countArray[0]);
     setSampling1(countArray[1]);
     setSampling2(countArray[2]);
-  };
-
-  const _handle60day = () => {
-    const today = new Date();
-    today.setDate(today.getDate() + 365);
-
-    let year1 = String(today.getFullYear());
-    let month1 = String(today.getMonth() + 1);
-    let day1 = String(today.getDate());
-
-    let newDate = String(
-      year1 +
-        (month1.length === 1 ? "0" + month1 : month1) +
-        (day1.length === 1 ? "0" + day1 : day1)
-    );
-    setStartDate(newDate);
-    return newDate;
   };
 
   function onClickAccept(shop_id) {

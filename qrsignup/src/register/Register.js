@@ -2,7 +2,7 @@ import "./Register.css";
 import shop from "../img/shop.png";
 import logo from "../img/kt.png";
 
-import { getExpriyDate } from "../utils/Time";
+import { handleDay } from "../utils/Time";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -96,13 +96,10 @@ function Left() {
 } // 왼쪽에서 보여주는 UI
 
 function Right() {
-  let [idCheck, idCheckC] = useState(false);
   let [result, resultC] = useState(0);
   let [버튼, 버튼변경] = useState(1); // 버튼 상태를 관리하기 위한 state
   let [아이디확인, 아이디확인변경] = useState(false); // 아이디 존재여부 검사 후 경고문구 표시를 위한 state
   let [email, setEmail] = useState("");
-
-  const [startDate, setStartDate] = useState("");
 
   const navigate = useNavigate();
 
@@ -112,23 +109,6 @@ function Right() {
     name: "",
   }); // 멀티 인풋 값을 관리하는 state
   const dbRef = ref(database);
-
-  const _handle60day = () => {
-    const today = new Date();
-    today.setDate(today.getDate() + 60);
-
-    let year1 = String(today.getFullYear());
-    let month1 = String(today.getMonth() + 1);
-    let day1 = String(today.getDate());
-
-    let newDate = String(
-      year1 +
-        (month1.length === 1 ? "0" + month1 : month1) +
-        (day1.length === 1 ? "0" + day1 : day1)
-    );
-    setStartDate(newDate);
-    return newDate;
-  };
 
   useEffect(() => {
     function RandomPin() {
@@ -247,7 +227,7 @@ function Right() {
 
   const onClick = () => {
     storeName = inputs.name; // qr페이지로 데이터 전달하기 위해 저장
-    writeUserData(inputs, result, email, _handle60day()); // 데이터 쓰기 작업
+    writeUserData(inputs, result, email, handleDay(60)); // 데이터 쓰기 작업
     navigate("/waiting/qr");
   }; // 버튼 클릭시 실행되는 함수
 

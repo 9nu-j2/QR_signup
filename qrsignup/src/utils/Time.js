@@ -51,3 +51,19 @@ export const getWaitingTime = (clientTimestamp) => {
 export const getExpriyDate = () => {
   return getNowYear() + getNowMonth() + getNowDate();
 };
+
+export const handleDay = (plusDay) => {
+  const today = new Date();
+  today.setDate(today.getDate() + plusDay);
+
+  let year1 = String(today.getFullYear());
+  let month1 = String(today.getMonth() + 1);
+  let day1 = String(today.getDate());
+
+  let newDate = String(
+    year1 +
+      (month1.length === 1 ? "0" + month1 : month1) +
+      (day1.length === 1 ? "0" + day1 : day1)
+  );
+  return newDate;
+};
