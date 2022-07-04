@@ -21,7 +21,7 @@ function Admin(props) {
 
   useEffect(() => {
     if (props.isLogin === true) {
-      navigate("/waiting/select");
+      navigate("/");
     }
   });
 

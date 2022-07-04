@@ -2,9 +2,18 @@ import "./Main.css";
 import mark from "../img/wifi.svg";
 import lol from "../img/wq.svg";
 import logo from "../img/kt.png";
-import { Link } from "react-router-dom";
 
-function Main() {
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+function Main(props) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (props.isLogin === false) {
+      navigate("/");
+    }
+  });
   return (
     <div className="Master">
       <div className="Logo">
@@ -20,7 +29,7 @@ function Main() {
             <img src={lol} />
           </div>
           <div className="TitlePart">QR Waiting</div>
-          <Link to="waiting">
+          <Link to="select">
             <h3>바로가기</h3>
           </Link>
         </div>
@@ -29,7 +38,7 @@ function Main() {
             <img src={mark} />
           </div>
           <div className="TitlePart">QR Wifi</div>
-          <Link to="wifi">
+          <Link to="/wifi">
             <h3>바로가기</h3>
           </Link>
         </div>

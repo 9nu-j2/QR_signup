@@ -27,9 +27,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Master />} />
+          <Route path="/" element={<Admin isLogin={sessionCheck} />} />
           <Route path="/wifi" element={<Wifi />} />
-          <Route path="/waiting" element={<Admin isLogin={sessionCheck} />} />
+          <Route path="/waiting" element={<Master isLogin={sessionCheck} />} />
           <Route
             path="/waiting/shop"
             element={<Register isLogin={sessionCheck} />}

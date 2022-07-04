@@ -107,7 +107,7 @@ function Monitor(props) {
 
   useEffect(() => {
     if (props.isLogin === false) {
-      navigate("/waiting");
+      navigate("/");
     }
   }); // 세션 유지 여부 확인, 접근 제한
 
