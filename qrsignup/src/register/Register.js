@@ -115,7 +115,7 @@ function Right() {
 
   const _handle60day = () => {
     const today = new Date();
-    today.setDate(today.getDate() + 365);
+    today.setDate(today.getDate() + 60);
 
     let year1 = String(today.getFullYear());
     let month1 = String(today.getMonth() + 1);
