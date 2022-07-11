@@ -123,13 +123,24 @@
 }
 
 .RLName {
-  width: 355px;
+  width: 125px;
+  margin-left: 15px;
+  display: flex;
+}
+
+.RLAbout {
+  width: 190px;
   margin-left: 15px;
   display: flex;
 }
 
 .RLName p {
   font-family: "YdestreetL";
+}
+
+.RLAbout p {
+  font-family: "YdestreetL";
+  font-size: 12px;
 }
 
 .RLbutton {

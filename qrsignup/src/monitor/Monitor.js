@@ -7,7 +7,14 @@ import { handleDay } from "../utils/Time";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { getDatabase, child, get, ref, update } from "firebase/database";
+import {
+  getDatabase,
+  child,
+  get,
+  ref,
+  update,
+  onValue,
+} from "firebase/database";
 import { database } from "../firebase";
 
 function Monitor(props) {
@@ -33,17 +40,15 @@ function Monitor(props) {
   // 클릭시 모달 오픈/클로즈를 위한 state
 
   useEffect(() => {
-    get(child(dbRef, "admin/" + `${sessionStorage.getItem("user_id")}`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setObjectList(Object.entries(snapshot.val().shop_list));
-          setAdminAbout(snapshot.val());
-        } else {
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const resp = ref(db, "admin/" + `${sessionStorage.getItem("user_id")}`);
+
+    onValue(resp, (snapshot) => {
+      if (snapshot.exists()) {
+        setObjectList(Object.entries(snapshot.val().shop_list));
+        setAdminAbout(snapshot.val());
+      } else {
+      }
+    });
   }, [readTrigger]); // 비동기로 처음 컴포넌트 렌더링 시에만 실행되는 hook, admin 정보 조회
 
   useEffect(() => {
@@ -103,7 +108,7 @@ function Monitor(props) {
         setReadTrigger(false);
       }
     }
-  }, [shopAbout, readTrigger]); //여기마저 해야함
+  }, [shopAbout, readTrigger]); // 승인버튼 클릭시 실행
 
   useEffect(() => {
     if (props.isLogin === false) {
@@ -134,6 +139,8 @@ function Monitor(props) {
         countArray[0]++;
         if (el[1].isWorking === true) {
           countArray[1]++;
+        } else if (el[1].isWorking === false) {
+          countArray[2]++;
         }
       } else if (el[1].isWorking === true) {
         countArray[1]++;
@@ -156,7 +163,7 @@ function Monitor(props) {
     return (
       <div className="ReqBottom">
         {props.objectList.map((el) => {
-          const { name, status } = el[1];
+          const { name, status, product } = el[1];
           if (status === "onProgress") {
             setShopNow(el[1]);
             return (
@@ -164,6 +171,9 @@ function Monitor(props) {
                 <div className="RLCircle" id="circle1"></div>
                 <div className="RLName">
                   <p>{name}</p>
+                </div>
+                <div className="RLAbout">
+                  <p>{product}</p>
                 </div>
                 <div className="RLbutton">
                   <button onClick={() => onClickAccept(el[0])}>승인</button>
@@ -181,13 +191,16 @@ function Monitor(props) {
       return (
         <div className="ReqBottom">
           {props.objectList.map((el) => {
-            const { name, isWorking } = el[1];
+            const { name, isWorking, product } = el[1];
             if (isWorking === true) {
               return (
                 <div className="ReqList">
                   <div className="RLCircle" id="circle2"></div>
                   <div className="RLName">
                     <p>{name}</p>
+                  </div>
+                  <div className="RLAbout">
+                    <p>{product}</p>
                   </div>
                   <div className="RLbutton"></div>
                 </div>
@@ -206,13 +219,16 @@ function Monitor(props) {
       return (
         <div className="ReqBottom">
           {props.objectList.map((el) => {
-            const { name, isWorking } = el[1];
+            const { name, isWorking, product } = el[1];
             if (isWorking === false) {
               return (
                 <div className="ReqList">
                   <div className="RLCircle" id="circle3"></div>
                   <div className="RLName">
                     <p>{name}</p>
+                  </div>
+                  <div className="RLAbout">
+                    <p>{product}</p>
                   </div>
                   <div className="RLbutton"></div>
                 </div>
