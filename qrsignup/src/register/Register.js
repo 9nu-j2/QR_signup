@@ -31,6 +31,7 @@ function writeUserData(inputs, pinNumber, mail, newDate) {
     length: { current: 0, total: 0 },
     today: today,
     waitingTime: "10",
+    isFirstLogined: true,
   });
   set(
     ref(
