@@ -2,10 +2,18 @@ import "./App.css";
 import Register from "./register/Register.js";
 import Generate from "./generate/Generate.js";
 import Wifi from "./wifi/Wifi.js";
-import Master from "./main/Main.js";
-import Admin from "./adminpage/Admin.js";
+// import Master from "./main/Main.js";
 import Select from "./select/Select.js";
 import Monitor from "./monitor/Monitor.js";
+
+import Admin from "./screens/adminpage/index";
+// import Select from "./screens/select";
+// import Monitor from "./screens/monitor";
+// import Register from "./screens/register";
+// import Generate from "./screens/generate";
+// import Wifi from "./screens/wifi";
+import Master from "./screens/main";
+
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -20,16 +28,15 @@ function App() {
       // 로그인 상태 변경
       sessionChange(true);
     }
-    console.log("check");
   });
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Admin isLogin={sessionCheck} />} />
+          <Route path="/" element={<Admin {...{ sessionCheck }} />} />
           <Route path="/wifi" element={<Wifi />} />
-          <Route path="/waiting" element={<Master isLogin={sessionCheck} />} />
+          <Route path="/waiting" element={<Master {...{ sessionCheck }} />} />
           <Route
             path="/waiting/shop"
             element={<Register isLogin={sessionCheck} />}
