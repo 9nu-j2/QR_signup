@@ -2,27 +2,25 @@
   --input-color: #000;
   --input-border: #000;
   --input-background: #fff;
-  --input-placeholder: #CBD1DC;
+  --input-placeholder: #cbd1dc;
 
-  --input-border-focus: #B5ACAD;
+  --input-border-focus: #b5acad;
 
   --group-color: var(--input-color);
   --group-border: var(--input-border);
-  --group-background: #FFEAE3;
+  --group-background: #ffeae3;
 
   --group-color-focus: #fff;
   --group-border-focus: var(--input-border-focus);
-  --group-background-focus: #B5ACAD;
-
+  --group-background-focus: #b5acad;
 }
 
 .Logo1 {
   position: absolute;
-  top:15px;
+  top: 15px;
   right: 15px;
   height: 35.12;
   width: 117.56px;
-  
 }
 
 .Logo1 img {
@@ -44,13 +42,13 @@
   color: var(--input-color);
   border: 2px solid var(--input-border);
   background: var(--input-background);
-  transition: border .3s ease;
+  transition: border 0.3s ease;
   &::placeholder {
-      color: var(--input-placeholder);
+    color: var(--input-placeholder);
   }
   &:focus {
-      outline: none;
-      border-color: var(--input-border-focus);
+    outline: none;
+    border-color: var(--input-border-focus);
   }
 }
 
@@ -60,56 +58,55 @@
   width: 60%;
   & > span,
   .form-field {
-      white-space: nowrap;
-      display: block;
-      &:not(:first-child):not(:last-child) {
-          border-radius: 0;
-      }
-      &:first-child {
-          border-radius: 6px 0 0 6px;
-      }
-      &:last-child {
-          border-radius: 0 6px 6px 0;
-      }
-      &:not(:first-child) {
-          margin-left: -1px;
-      }
+    white-space: nowrap;
+    display: block;
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
   }
   .form-field {
-      position: relative;
-      z-index: 1;
-      flex: 1 1 auto;
-      width: 1%;
-      margin-top: 0;
-      margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-top: 0;
+    margin-bottom: 0;
   }
   & > span {
-      text-align: center;
-      padding: 8px 12px;
-      font-size: 14px;
-      line-height: 25px;
-      color: var(--group-color);
-      background: var(--group-background);
-      border: 2px solid var(--group-border);
-      transition: background .3s ease, border .3s ease, color .3s ease;
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--group-color);
+    background: var(--group-background);
+    border: 2px solid var(--group-border);
+    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
   }
   &:focus-within {
-      & > span {
-          color: var(--group-color-focus);
-          background: var(--group-background-focus);
-          border-color: var(--group-border-focus);
-      }
+    & > span {
+      color: var(--group-color-focus);
+      background: var(--group-background-focus);
+      border-color: var(--group-border-focus);
+    }
   }
 }
 
-
 .Di {
-  height: 150%;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #DED8DA;
+  background-color: #ded8da;
 }
 
 .Buttons {
@@ -126,7 +123,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #DED8DA;
+  background-color: #ded8da;
 }
 
 .Di2 {
@@ -135,12 +132,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #DED8DA;
+  background-color: #ded8da;
 }
 
 .CardComp {
   width: 500px;
-  height: 800px;
+  height: 80%;
   border-radius: 10px;
   border: 2px solid black;
   background-color: white;
@@ -187,7 +184,7 @@
 
 .Center {
   width: 719px;
-  height:1024px;
+  height: 1024px;
   overflow: hidden;
   position: relative;
   color: white;
@@ -271,7 +268,7 @@
   border-radius: 4px;
   color: #3c4043;
   cursor: pointer;
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   font-size: 14px;
   height: 36px;
   line-height: 27px;
@@ -286,7 +283,7 @@
 
 .button-16:hover {
   border-color: #dadce0;
-  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
   color: #202124;
 }
 
@@ -295,21 +292,20 @@
   outline: none;
 }
 
-
-@media all and (min-width:768px) {
+@media all and (min-width: 768px) {
   /*스타일입력*/
   .button-74 {
     min-width: 120px;
     padding: 0 25px;
   }
-} 
+}
 
-/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
-@media all and (min-width:480px) and (max-width:767px) {
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
   /*스타일입력*/
   .Center {
     width: 100%;
-    height:1024px;
+    height: 1024px;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -318,9 +314,9 @@
     align-items: center;
     text-align: center;
   }
-} 
+}
 
-/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
-@media all and (max-width:479px) {
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
   /*스타일입력*/
 }

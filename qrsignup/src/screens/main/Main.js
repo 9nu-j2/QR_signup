@@ -1,19 +1,4 @@
-import "./Main.css";
-import mark from "../img/wifi.svg";
-import lol from "../img/wq.svg";
-import logo from "../img/kt.png";
-
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
 function Main(props) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (props.isLogin === false) {
-      navigate("/");
-    }
-  });
   return (
     <div className="Master">
       <div className="Logo">

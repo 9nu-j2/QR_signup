@@ -1,17 +1,16 @@
 import "./App.css";
 import Register from "./register/Register.js";
 import Generate from "./generate/Generate.js";
-import Wifi from "./wifi/Wifi.js";
-// import Master from "./main/Main.js";
+// import Wifi from "./wifi/Wifi.js";
 import Select from "./select/Select.js";
 import Monitor from "./monitor/Monitor.js";
 
-import Admin from "./screens/adminpage/index";
+import Admin from "./screens/adminpage";
 // import Select from "./screens/select";
 // import Monitor from "./screens/monitor";
 // import Register from "./screens/register";
 // import Generate from "./screens/generate";
-// import Wifi from "./screens/wifi";
+import Wifi from "./screens/wifi";
 import Master from "./screens/main";
 
 import { Routes, Route, BrowserRouter } from "react-router-dom";
@@ -39,19 +38,19 @@ function App() {
           <Route path="/waiting" element={<Master {...{ sessionCheck }} />} />
           <Route
             path="/waiting/shop"
-            element={<Register isLogin={sessionCheck} />}
+            element={<Register {...{ sessionCheck }} />}
           />
           <Route
             path="/waiting/qr"
-            element={<Generate isLogin={sessionCheck} />}
+            element={<Generate {...{ sessionCheck }} />}
           />
           <Route
             path="/waiting/select"
-            element={<Select isLogin={sessionCheck} />}
+            element={<Select {...{ sessionCheck }} />}
           />
           <Route
             path="/waiting/monitor"
-            element={<Monitor isLogin={sessionCheck} />}
+            element={<Monitor {...{ sessionCheck }} />}
           />
         </Routes>
       </BrowserRouter>
