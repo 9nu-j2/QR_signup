@@ -1,12 +1,10 @@
 import "./App.css";
-import Register from "./register/Register.js";
-import Generate from "./generate/Generate.js";
 
 import Admin from "./screens/adminpage";
 import Select from "./screens/select";
 import Monitor from "./screens/monitor";
-// import Register from "./screens/register";
-// import Generate from "./screens/generate";
+import Register from "./screens/register";
+import Generate from "./screens/generate";
 import Wifi from "./screens/wifi";
 import Master from "./screens/main";
 
