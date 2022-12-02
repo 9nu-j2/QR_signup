@@ -55,9 +55,6 @@ const WifiPresenter = ({
   onChange,
   onClick,
   inputs,
-  storename,
-  ssid,
-  pw,
   모달,
 }) => {
   return (
@@ -79,7 +76,6 @@ const WifiPresenter = ({
                 type="text"
                 placeholder="가게이름을 입력해주세요"
                 name="storename"
-                value={storename}
               />
             </div>
           </div>
@@ -92,7 +88,6 @@ const WifiPresenter = ({
                 type="text"
                 placeholder="SSID를 입력해주세요"
                 name="ssid"
-                value={ssid}
               />
             </div>
           </div>
@@ -105,7 +100,6 @@ const WifiPresenter = ({
                 type="text"
                 placeholder="비밀번호를 입력해주세요"
                 name="pw"
-                value={pw}
               />
             </div>
           </div>

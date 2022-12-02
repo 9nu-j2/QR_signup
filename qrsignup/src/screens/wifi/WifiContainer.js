@@ -37,6 +37,7 @@ const WifiContainer = () => {
       ...inputs, // 기존의 input 객체를 복사한 뒤
       [name]: value, // name 키를 가진 값을 value 로 설정
     });
+    console.log(value);
   }; // 각 input에서 타이핑이 진행되는 걸 기록하는 함수
 
   const onClick = (e) => {
@@ -57,9 +58,6 @@ const WifiContainer = () => {
       {...{ onChange }}
       {...{ onClick }}
       {...{ inputs }}
-      {...{ storename }}
-      {...{ ssid }}
-      {...{ pw }}
       {...{ 모달 }}
     />
   );
