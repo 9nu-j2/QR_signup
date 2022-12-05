@@ -21,6 +21,9 @@
   object-fit: cover;
 }
 
+.IconBox button {
+}
+
 .AdminSelect {
   display: flex;
   flex-direction: row;
