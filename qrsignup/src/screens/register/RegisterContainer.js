@@ -8,6 +8,10 @@ import { useState, useEffect } from "react";
 import { child, get, set, ref } from "firebase/database";
 import { database } from "../../firebase";
 
+let pin = 0;
+let today = 0;
+let storeName = "";
+
 const RegisterContainer = ({ sessionCheck }) => {
   const navigate = useNavigate();
   const isLogin = sessionCheck;
@@ -16,10 +20,6 @@ const RegisterContainer = ({ sessionCheck }) => {
   let [버튼, 버튼변경] = useState(1); // 버튼 상태를 관리하기 위한 state
   let [아이디확인, 아이디확인변경] = useState(false); // 아이디 존재여부 검사 후 경고문구 표시를 위한 state
   let [email, setEmail] = useState("");
-
-  let pin = 0;
-  let today = 0;
-  let storeName = "";
 
   const [inputs, setInputs] = useState({
     id: "",
@@ -209,3 +209,5 @@ const RegisterContainer = ({ sessionCheck }) => {
 };
 
 export default RegisterContainer;
+export { pin };
+export { storeName };
