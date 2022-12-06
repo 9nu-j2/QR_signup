@@ -26,8 +26,7 @@ const SelectContainer = ({ sessionCheck }) => {
 
   useEffect(() => {
     if (sessionCheck === false) {
-      navigate("/waiting");
-      console.log(sessionCheck);
+      navigate("/");
     }
   }); // 세션 유지 여부 확인, 접근 제한
 
