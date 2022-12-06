@@ -1,4 +1,4 @@
 import MonitorContainer from "./MonitorContainer";
-import "../statics/Monitor.css";
+import "../../lib/statics/Monitor.css";
 
 export default MonitorContainer;

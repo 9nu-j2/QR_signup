@@ -1,4 +1,4 @@
 import MainContainer from "./MainContainer";
-import "../statics/Main.css";
+import "../../lib/statics/Main.css";
 
 export default MainContainer;
