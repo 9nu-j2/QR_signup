@@ -31,19 +31,7 @@ const SelectContainer = ({ sessionCheck }) => {
     }
   }); // 세션 유지 여부 확인, 접근 제한
 
-  const onClickLogout = () => {
-    // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
-    sessionStorage.removeItem("user_id");
-    // App 으로 이동(새로고침)
-    document.location.href = "/waiting";
-  }; // 로그아웃 기능
-  return (
-    <SelectPresenter
-      {...{ adminAbout }}
-      {...{ onClickLogout }}
-      {...{ navigate }}
-    />
-  );
+  return <SelectPresenter {...{ adminAbout }} {...{ navigate }} />;
 };
 
 export default SelectContainer;
