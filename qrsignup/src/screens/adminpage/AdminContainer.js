@@ -20,7 +20,7 @@ const AdminContainer = ({ sessionCheck }) => {
 
   useEffect(() => {
     if (sessionCheck === true) {
-      navigate("/");
+      navigate("/waiting");
     }
   });
 
