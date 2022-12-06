@@ -1,4 +1,4 @@
 import GenerateContainer from "./GenerateContainer";
-import "../statics/Generate.css";
+import "../../lib/statics/Generate.css";
 
 export default GenerateContainer;

@@ -1,4 +1,4 @@
 import WifiContainer from "./WifiContainer";
-import "../statics/Wifi.scss";
+import "../../lib/statics/Wifi.scss";
 
 export default WifiContainer;

@@ -20,7 +20,7 @@ const AdminContainer = ({ sessionCheck }) => {
 
   useEffect(() => {
     if (sessionCheck === true) {
-      navigate("/waiting");
+      navigate("/");
     }
   });
 
@@ -46,12 +46,12 @@ const AdminContainer = ({ sessionCheck }) => {
         if (snapshot.exists()) {
           if (snapshot.val().password === inputs.password) {
             sessionStorage.setItem("user_id", inputs.id);
-            alert("로그인 성공");
+            alert("로그인되었습니다");
           } else {
             alert("비밀번호가 다릅니다");
           }
         } else {
-          console.log("안됨");
+          alert("아이디 또는 비밀번호가 존재하지 않습니다");
         }
         window.location.reload();
       })

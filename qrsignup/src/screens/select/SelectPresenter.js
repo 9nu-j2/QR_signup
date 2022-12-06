@@ -1,7 +1,9 @@
 import logo from "../../img/kt.png";
 import icon from "../../img/icon.ico";
 
-const SelectPresenter = ({ adminAbout, onClickLogout, navigate }) => {
+import logout from "../../utils/Logout";
+
+const SelectPresenter = ({ adminAbout, navigate }) => {
   return (
     <div className="Master">
       <div className="Logo">
@@ -13,7 +15,7 @@ const SelectPresenter = ({ adminAbout, onClickLogout, navigate }) => {
         </div>
         <p className="AboutAdmin">{sessionStorage.getItem("user_id")}</p>
         <p className="AboutAdmin2">{adminAbout.email}</p>
-        <button onClick={onClickLogout}>로그아웃</button>
+        <button onClick={() => logout("/")}>로그아웃</button>
       </div>
       <div className="AdminSelect">
         <button>

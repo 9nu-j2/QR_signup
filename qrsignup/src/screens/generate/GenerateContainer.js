@@ -12,6 +12,9 @@ import { storeName } from "../register/RegisterContainer";
 
 const GenerateContainer = ({ sessionCheck }) => {
   const componentRef = useRef();
+  const navigate = useNavigate();
+  const isLogin = sessionCheck;
+
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -22,9 +25,6 @@ const GenerateContainer = ({ sessionCheck }) => {
       saveAs(blob, `${storeName}.png`);
     });
   };
-
-  const navigate = useNavigate();
-  const isLogin = sessionCheck;
 
   useEffect(() => {
     if (isLogin === false) {

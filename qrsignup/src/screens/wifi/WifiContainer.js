@@ -27,7 +27,7 @@ const WifiContainer = () => {
   const onDownloadBtn = () => {
     const card = componentRef.current;
     domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, "card.png");
+      saveAs(blob, "qr_wifi.png");
     });
   };
 
@@ -40,7 +40,7 @@ const WifiContainer = () => {
     console.log(value);
   }; // 각 input에서 타이핑이 진행되는 걸 기록하는 함수
 
-  const onClick = (e) => {
+  const onClick = () => {
     const db = database;
     모달변경((모달 = true));
 

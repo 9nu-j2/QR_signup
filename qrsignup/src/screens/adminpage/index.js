@@ -1,4 +1,4 @@
 import AdminContainer from "./AdminContainer";
-import "../statics/Admin.css";
+import "../../lib/statics/Admin.css";
 
 export default AdminContainer;

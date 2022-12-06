@@ -1,4 +1,4 @@
 import SelectContainer from "./SelectContainer";
-import "../statics/Select.css";
+import "../../lib/statics/Select.css";
 
 export default SelectContainer;
